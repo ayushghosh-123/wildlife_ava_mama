@@ -1,0 +1,21 @@
+import Hero from "@/component/Hero";
+import FeaturedStories from "@/component/FeaturedStories";
+import AboutSection from "@/component/AboutSection";
+import Collections from "@/component/Collection";
+import BehindTheShot from "@/component/BehindTheShot";
+import Newsletter from "@/component/Newsletter";
+
+
+export default function Home() {
+  return (
+      <main className="flex-1 w-full">
+        <Hero />
+        <FeaturedStories />
+        <AboutSection />
+        <Collections />
+        <BehindTheShot />
+        <Newsletter />
+      </main>
+ 
+  );
+}

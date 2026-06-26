@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@theme {
+  /* Design System Typography */
+  --font-sans: var(--font-hanken-grotesk), sans-serif;
+  --font-syne: var(--font-syne), sans-serif;
+
+  /* Obsidian Nature Color Palette */
+  --color-background: #050505;
+  --color-surface: #141313;
+  --color-surface-dim: #141313;
+  --color-surface-bright: #3a3939;
+  --color-surface-container-lowest: #0e0e0e;
+  --color-surface-container-low: #1c1b1b;
+  --color-surface-container: #201f1f;
+  --color-surface-container-high: #2b2a2a;
+  --color-surface-container-highest: #353434;
+
+  --color-on-surface: #e5e2e1;
+  --color-on-surface-variant: #c4c7c7;
+
+  --color-primary: #c9c6c5;
+  --color-on-primary: #313030;
+  
+  --color-brand-accent: #e29933; /* Golden Orange */
+  --color-brand-forest: #2d4b37; /* Forest Green */
+
+  /* Rigid corners as per shapes spec */
+  --radius-DEFAULT: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-full: 9999px;
+
+  /* Custom Spacing Constants */
+  --spacing-margin-desktop: 80px;
+  --spacing-margin-mobile: 20px;
+  --spacing-section-gap: 160px;
+  --spacing-gutter: 24px;
+}
+
+/* Custom premium components and utilities */
+.glass-overlay {
+  background: rgba(17, 17, 17, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.milled-edge {
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+}
+
+.nav-glass {
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-reveal {
+  animation: reveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Custom font-specific tracking adjustments */
+.font-syne {
+  font-family: var(--font-syne);
+}
