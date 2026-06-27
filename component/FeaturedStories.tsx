@@ -1,6 +1,14 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import {
+  SectionIntro,
+  WordRevealHeading,
+  WordRevealText,
+  ClipRevealText,
+  FadeReveal,
+  LineRevealHeading,
+  SectionLabel,
+} from "@/component/ui/TextAnimations";
 
 const STORIES = [
   {
@@ -37,37 +45,20 @@ const STORIES = [
   },
 ];
 
-function StoryCard({ story, index }: { story: typeof STORIES[0]; index: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [inView, setInView] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setInView(true); obs.disconnect(); } },
-      { threshold: 0.15 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
+function StoryCard({ story, index }: { story: (typeof STORIES)[0]; index: number }) {
   const isReverse = story.layout === "reverse";
+  const align = isReverse ? "md:text-right md:items-end" : "";
 
   return (
-    <div
-      ref={ref}
-      className={`grid gap-6 sm:gap-8 md:grid-cols-12 md:gap-6 items-center transition-all duration-1000 ${
-        inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16"
-      }`}
-      style={{ transitionDelay: `${index * 150}ms` }}
+    <FadeReveal
+      as="article"
+      className="grid gap-6 sm:gap-8 md:grid-cols-12 md:gap-6 items-center"
+      delay={index * 0.1}
+      y={48}
     >
-      {/* Image col */}
       <div
         className={`group relative overflow-hidden cursor-pointer ${
-          isReverse
-            ? "md:col-span-7 md:col-start-5 md:order-2"
-            : "md:col-span-7"
+          isReverse ? "md:col-span-7 md:col-start-5 md:order-2" : "md:col-span-7"
         }`}
       >
         <img
@@ -75,13 +66,9 @@ function StoryCard({ story, index }: { story: typeof STORIES[0]; index: number }
           alt={story.imageAlt}
           src={story.imageSrc}
         />
-
-        {/* Year badge */}
         <div className="absolute top-4 sm:top-6 left-4 sm:left-6 font-syne text-[9px] tracking-widest uppercase text-white/50 font-bold">
           {story.year}
         </div>
-
-        {/* Hover info overlay — always visible on touch, hover on desktop */}
         <div className="absolute bottom-0 left-0 right-0 glass-overlay p-4 sm:p-7 translate-y-0 md:translate-y-full md:group-hover:translate-y-0 transition-transform duration-500">
           <div className="flex justify-between items-end">
             <div>
@@ -92,39 +79,48 @@ function StoryCard({ story, index }: { story: typeof STORIES[0]; index: number }
                 {story.location}
               </p>
             </div>
-            <p className="font-syne text-[9px] tracking-widest text-white/30 uppercase hidden sm:block">{story.gear}</p>
+            <p className="font-syne text-[9px] tracking-widest text-white/30 uppercase hidden sm:block">
+              {story.gear}
+            </p>
           </div>
         </div>
       </div>
 
-      {/* Text col */}
       <div
-        className={`space-y-4 sm:space-y-6 pt-2 md:pt-0 ${
+        className={`space-y-4 sm:space-y-6 pt-2 md:pt-0 flex flex-col ${align} ${
           isReverse ? "md:col-span-4 md:order-1" : "md:col-span-4 md:col-start-9"
         }`}
       >
-        <div className="flex items-center gap-3">
-          <span className="w-6 h-[1px] bg-brand-accent" />
-          <span className="font-syne text-[9px] tracking-widest uppercase text-brand-accent font-semibold">
-            Featured Story
-          </span>
-        </div>
+        <FadeReveal delay={0.05}>
+          <div className={`flex items-center gap-3 ${isReverse ? "md:flex-row-reverse" : ""}`}>
+            <span className="w-6 h-px bg-brand-accent" />
+            <span className="font-syne text-[9px] tracking-widest uppercase text-brand-accent font-semibold">
+              Featured Story
+            </span>
+          </div>
+        </FadeReveal>
 
-        <h2 className={`font-syne text-[clamp(1.5rem,5vw,3rem)] font-bold leading-[1.05] text-white ${isReverse ? "md:text-right" : ""}`}>
+        <WordRevealHeading
+          className={`font-syne text-[clamp(1.5rem,5vw,3rem)] font-bold leading-[1.05] text-white ${isReverse ? "md:text-right" : ""}`}
+          delay={0.08}
+        >
           {story.title}
-        </h2>
+        </WordRevealHeading>
 
-        <p className={`text-sm md:text-base text-white/55 leading-relaxed ${isReverse ? "md:text-right" : ""}`}>
+        <WordRevealText
+          className={`text-sm md:text-base text-white/55 leading-relaxed ${isReverse ? "md:text-right" : ""}`}
+          delay={0.15}
+        >
           {story.description}
-        </p>
+        </WordRevealText>
 
-        <div className={`flex items-center gap-4 ${isReverse ? "md:justify-end" : ""}`}>
+        <FadeReveal delay={0.25} className={`flex items-center gap-4 ${isReverse ? "md:justify-end" : ""}`}>
           <span className="font-syne text-[9px] tracking-widest uppercase text-white/25 font-semibold border border-white/10 px-3 py-1.5">
             {story.edition}
           </span>
-        </div>
+        </FadeReveal>
 
-        <div className={`flex items-center gap-4 pt-2 ${isReverse ? "md:justify-end" : ""}`}>
+        <FadeReveal delay={0.32} className={`flex items-center gap-4 pt-2 ${isReverse ? "md:justify-end" : ""}`}>
           <a
             href="#"
             className="group/link inline-flex items-center gap-2 border-b border-brand-accent pb-2 font-syne text-[10px] tracking-wider uppercase font-bold text-white hover:text-brand-accent transition-colors duration-300"
@@ -134,30 +130,30 @@ function StoryCard({ story, index }: { story: typeof STORIES[0]; index: number }
               arrow_forward
             </span>
           </a>
-        </div>
+        </FadeReveal>
       </div>
-    </div>
+    </FadeReveal>
   );
 }
 
 export default function FeaturedStories() {
   return (
-    <section className="section-pad bg-[#050505]" id="portfolio">
-      {/* Section header */}
+    <section className="section-pad bg-[#050505]" id="stories">
       <div className="page-container mb-10 sm:mb-16 md:mb-24 flex flex-col sm:flex-row sm:items-end justify-between gap-4 sm:gap-6">
-        <div>
-          <p className="font-syne text-[10px] tracking-[0.4em] text-brand-accent uppercase font-bold mb-3 sm:mb-4">
-            Portfolio · 2022–2024
-          </p>
-          <h2 className="font-syne text-[clamp(1.5rem,5vw,3rem)] font-bold text-white">Featured Stories</h2>
-        </div>
-        <a
-          href="#"
-          className="inline-flex items-center gap-2 font-syne text-[10px] tracking-widest uppercase text-white/40 hover:text-brand-accent transition-colors duration-300 border-b border-white/10 hover:border-brand-accent pb-2 self-start"
-        >
-          View Full Archive
-          <span className="material-symbols-outlined text-sm">arrow_forward</span>
-        </a>
+        <SectionIntro
+          label="Portfolio · 2022–2024"
+          title="Featured Stories"
+          headingClassName="font-syne text-[clamp(1.5rem,5vw,3rem)] font-bold text-white"
+        />
+        <FadeReveal delay={0.2} className="self-start">
+          <a
+            href="#"
+            className="inline-flex items-center gap-2 font-syne text-[10px] tracking-widest uppercase text-white/40 hover:text-brand-accent transition-colors duration-300 border-b border-white/10 hover:border-brand-accent pb-2"
+          >
+            View Full Archive
+            <span className="material-symbols-outlined text-sm">arrow_forward</span>
+          </a>
+        </FadeReveal>
       </div>
 
       <div className="page-container space-y-12 sm:space-y-20 md:space-y-40">

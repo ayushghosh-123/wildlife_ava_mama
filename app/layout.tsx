@@ -3,7 +3,6 @@ import type { Metadata, Viewport } from "next";
 import { Syne, Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
 import Footer from "@/component/Footer";
-import Header from "@/component/Header";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -48,7 +47,6 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full bg-[#050505] text-[#e5e2e1] font-sans flex flex-col safe-bottom" suppressHydrationWarning>
-        <Header />
         {children}
         <Footer />
       </body>

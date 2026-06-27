@@ -1,3 +1,11 @@
+"use client";
+
+import {
+  SectionLabel,
+  LineRevealHeading,
+  FadeReveal,
+} from "@/component/ui/TextAnimations";
+
 const NAV_LINKS = [
   { label: "Portfolio", href: "#portfolio" },
   { label: "Collections", href: "#collections" },
@@ -55,22 +63,26 @@ export default function Footer() {
       <div className="page-container py-14 sm:py-20 border-b border-white/5">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 sm:gap-8">
           <div className="space-y-3">
-            <p className="font-syne text-[10px] tracking-[0.4em] text-brand-accent uppercase font-bold">
+            <SectionLabel className="font-syne text-[10px] tracking-[0.4em] text-brand-accent uppercase font-bold">
               Commission a Print
-            </p>
-            <h2 className="font-syne text-[clamp(1.5rem,5vw,3rem)] font-bold text-white leading-tight">
-              Ready to bring the wild<br className="hidden md:block" /> into your space?
-            </h2>
+            </SectionLabel>
+            <LineRevealHeading
+              lines={["Ready to bring the wild", "into your space?"]}
+              className="font-syne text-[clamp(1.5rem,5vw,3rem)] font-bold text-white leading-tight"
+              stagger={0.1}
+            />
           </div>
-          <a
-            href="mailto:studio@wildlife.art"
-            className="group inline-flex items-center justify-center gap-4 bg-brand-accent text-black w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 font-syne text-[11px] font-extrabold tracking-widest uppercase hover:bg-white transition-colors duration-500 shrink-0"
-          >
-            Start a Conversation
-            <span className="material-symbols-outlined text-base transition-transform duration-300 group-hover:translate-x-1">
-              arrow_forward
-            </span>
-          </a>
+          <FadeReveal delay={0.2}>
+            <a
+              href="mailto:studio@wildlife.art"
+              className="group inline-flex items-center justify-center gap-4 bg-brand-accent text-black w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 font-syne text-[11px] font-extrabold tracking-widest uppercase hover:bg-white transition-colors duration-500 shrink-0"
+            >
+              Start a Conversation
+              <span className="material-symbols-outlined text-base transition-transform duration-300 group-hover:translate-x-1">
+                arrow_forward
+              </span>
+            </a>
+          </FadeReveal>
         </div>
       </div>
 
