@@ -21,7 +21,7 @@
 
   --color-primary: #c9c6c5;
   --color-on-primary: #313030;
-  
+
   --color-brand-accent: #e29933; /* Golden Orange */
   --color-brand-forest: #2d4b37; /* Forest Green */
 
@@ -36,6 +36,25 @@
   --spacing-margin-mobile: 20px;
   --spacing-section-gap: 160px;
   --spacing-gutter: 24px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: var(--color-background);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  background: rgba(226, 153, 51, 0.35);
+  color: #fff;
 }
 
 /* Custom premium components and utilities */
@@ -65,6 +84,25 @@
   scrollbar-width: none;
 }
 
+/* Safe-area support for iOS notch / home bar */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.safe-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+/* Touch-action for horizontal scroll strips */
+.touch-pan-x {
+  touch-action: pan-x;
+}
+
+/* Prevent text overflow on very small screens */
+.break-words-all {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
 @keyframes reveal {
   from {
     opacity: 0;
@@ -83,4 +121,64 @@
 /* Custom font-specific tracking adjustments */
 .font-syne {
   font-family: var(--font-syne);
+}
+
+/* Mobile-first layout primitives */
+.page-container {
+  width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: var(--spacing-margin-mobile);
+}
+
+@media (min-width: 640px) {
+  .page-container {
+    padding-inline: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .page-container {
+    padding-inline: var(--spacing-margin-desktop);
+  }
+}
+
+.section-pad {
+  padding-block: 5rem;
+}
+
+@media (min-width: 640px) {
+  .section-pad {
+    padding-block: 7rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .section-pad {
+    padding-block: 10rem;
+  }
+}
+
+/* Disable hover-only effects on touch devices */
+@media (hover: none) {
+  .touch-show {
+    opacity: 1 !important;
+    transform: none !important;
+    height: auto !important;
+    max-height: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

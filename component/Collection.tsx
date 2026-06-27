@@ -45,15 +45,15 @@ export default function Collections() {
   }, []);
 
   return (
-    <section id="collections" className="py-40 px-6 md:px-20 bg-[#050505]">
-      <div className="max-w-7xl mx-auto">
+    <section id="collections" className="section-pad bg-[#050505]">
+      <div className="page-container">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-20">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 sm:gap-6 mb-10 sm:mb-16 md:mb-20">
           <div>
-            <p className="font-syne text-[10px] tracking-[0.4em] text-brand-accent uppercase font-bold mb-4">
+            <p className="font-syne text-[10px] tracking-[0.4em] text-brand-accent uppercase font-bold mb-3 sm:mb-4">
               Fine Art Prints
             </p>
-            <h2 className="font-syne text-3xl md:text-5xl font-bold text-white">Collections</h2>
+            <h2 className="font-syne text-[clamp(1.5rem,5vw,3rem)] font-bold text-white">Collections</h2>
           </div>
           <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent to-white/5 hidden md:block mx-12" />
           <a
@@ -65,15 +65,18 @@ export default function Collections() {
           </a>
         </div>
 
-        {/* Grid */}
-        <div ref={ref} className="grid md:grid-cols-3 gap-6">
+        {/* Grid — 1 col mobile, 2 col sm, 3 col xl */}
+        <div ref={ref} className="grid gap-4 sm:gap-5 md:gap-6 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
           {COLLECTIONS.map(({ title, count, description, src, alt, tag }, i) => (
             <div
               key={title}
-              className={`group relative aspect-[3/4] overflow-hidden cursor-pointer transition-all duration-1000 ${
+              className={`group relative overflow-hidden cursor-pointer transition-all duration-1000 ${
                 inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16"
               }`}
-              style={{ transitionDelay: `${i * 120}ms` }}
+              style={{
+                transitionDelay: `${i * 120}ms`,
+                aspectRatio: "3/4",
+              }}
             >
               <img
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
@@ -86,23 +89,26 @@ export default function Collections() {
 
               {/* Tag badge */}
               {tag && (
-                <div className="absolute top-5 right-5 bg-brand-accent text-black font-syne text-[9px] tracking-widest uppercase font-bold px-3 py-1">
+                <div className="absolute top-4 right-4 sm:top-5 sm:right-5 bg-brand-accent text-black font-syne text-[9px] tracking-widest uppercase font-bold px-3 py-1">
                   {tag}
                 </div>
               )}
 
-              {/* Content */}
-              <div className="absolute inset-0 flex flex-col justify-end p-8">
+              {/* Content — always visible on mobile, hover on desktop */}
+              <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-6 md:p-8">
                 <div className="transform transition-transform duration-500 group-hover:-translate-y-2">
                   <p className="font-syne text-[9px] tracking-[0.3em] uppercase text-brand-accent font-bold mb-2">
                     {count}
                   </p>
-                  <h3 className="font-syne text-2xl md:text-3xl font-bold text-white mb-3">{title}</h3>
-                  <p className="font-syne text-xs text-white/0 group-hover:text-white/60 transition-all duration-500 leading-relaxed">
+                  <h3 className="font-syne text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2 sm:mb-3">{title}</h3>
+                  <p className="font-syne text-xs text-white/50 leading-relaxed md:text-white/0 md:group-hover:text-white/60 transition-all duration-500 md:block hidden">
+                    {description}
+                  </p>
+                  <p className="font-syne text-xs text-white/50 leading-relaxed md:hidden">
                     {description}
                   </p>
                 </div>
-                <div className="mt-4 overflow-hidden h-0 group-hover:h-8 transition-all duration-500">
+                <div className="mt-3 sm:mt-4 h-8 md:h-0 md:group-hover:h-8 overflow-hidden transition-all duration-500">
                   <a
                     href="#"
                     className="inline-flex items-center gap-1 font-syne text-[9px] tracking-widest uppercase text-brand-accent font-bold"
@@ -117,7 +123,7 @@ export default function Collections() {
         </div>
 
         {/* Bottom note */}
-        <p className="text-center font-syne text-[9px] tracking-widest uppercase text-white/20 mt-12">
+        <p className="text-center font-syne text-[8px] sm:text-[9px] tracking-widest uppercase text-white/20 mt-8 sm:mt-12 px-2 leading-relaxed">
           All prints are archival pigment on Hahnemühle Photo Rag · Signed & numbered by the artist
         </p>
       </div>

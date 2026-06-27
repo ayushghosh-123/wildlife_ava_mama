@@ -18,20 +18,20 @@ export default function Newsletter() {
   }
 
   return (
-    <section className="relative py-40 px-6 md:px-20 overflow-hidden bg-[#050505]">
-      {/* BG accent glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-brand-accent/5 blur-[120px] pointer-events-none" />
+    <section className="relative section-pad overflow-hidden bg-[#050505]">
+      {/* BG accent glow — scales with viewport */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(100vw,600px)] h-[min(100vw,600px)] rounded-full bg-brand-accent/5 blur-[80px] sm:blur-[120px] pointer-events-none" />
 
-      <div className="max-w-3xl mx-auto relative z-10 text-center space-y-10">
+      <div className="page-container max-w-3xl relative z-10 text-center space-y-8 sm:space-y-10">
         <p className="font-syne text-[10px] tracking-[0.4em] text-brand-accent uppercase font-bold">
           Inner Circle
         </p>
 
-        <h2 className="font-syne text-5xl md:text-8xl leading-none uppercase italic font-extrabold tracking-tighter text-white">
+        <h2 className="font-syne text-[clamp(2.25rem,10vw,6rem)] leading-none uppercase italic font-extrabold tracking-tighter text-white">
           Stay Wild.
         </h2>
 
-        <p className="text-base md:text-lg text-white/50 max-w-xl mx-auto leading-relaxed">
+        <p className="text-sm sm:text-base md:text-lg text-white/50 max-w-sm sm:max-w-xl mx-auto leading-relaxed px-2">
           Join 4,200+ subscribers for exclusive early access to print releases, field dispatches,
           and behind-the-scenes journals — delivered monthly.
         </p>
@@ -43,9 +43,9 @@ export default function Newsletter() {
             <p className="font-syne text-sm text-white/40">First dispatch arrives next month.</p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="relative max-w-md mx-auto pt-6">
+          <form onSubmit={handleSubmit} className="relative max-w-md mx-auto pt-6 px-2 sm:px-0 w-full">
             <input
-              className="w-full bg-transparent border-b border-white/15 pb-5 pr-20 focus:outline-none focus:border-brand-accent text-lg md:text-xl placeholder:text-white/15 text-white rounded-none transition-colors duration-300"
+              className="w-full bg-transparent border-b border-white/15 pb-5 pr-[4.5rem] sm:pr-24 focus:outline-none focus:border-brand-accent text-base sm:text-lg md:text-xl placeholder:text-white/15 text-white rounded-none transition-colors duration-300 min-h-[44px]"
               placeholder="Your Email Address"
               type="email"
               value={email}
@@ -56,7 +56,7 @@ export default function Newsletter() {
             <button
               type="submit"
               disabled={status === "loading"}
-              className="absolute right-0 bottom-5 font-syne text-[10px] tracking-[0.2em] uppercase font-bold transition-colors duration-300 cursor-pointer disabled:opacity-50"
+              className="absolute right-0 bottom-5 font-syne text-[10px] tracking-[0.2em] uppercase font-bold transition-colors duration-300 cursor-pointer disabled:opacity-50 py-1 px-1"
             >
               {status === "loading" ? (
                 <span className="text-white/40 animate-pulse">Sending…</span>
@@ -68,7 +68,7 @@ export default function Newsletter() {
         )}
 
         {/* Social proof strip */}
-        <div className="flex justify-center items-center gap-6 pt-4 border-t border-white/5">
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-6 pt-4 border-t border-white/5">
           {[
             { icon: "verified", label: "No spam, ever" },
             { icon: "lock", label: "Private & secure" },

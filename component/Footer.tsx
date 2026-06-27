@@ -52,19 +52,19 @@ export default function Footer() {
       className="bg-[#050505] border-t border-white/[0.06]"
     >
       {/* Top section: CTA */}
-      <div className="px-6 md:px-20 py-20 border-b border-white/5">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-8">
+      <div className="page-container py-14 sm:py-20 border-b border-white/5">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 sm:gap-8">
           <div className="space-y-3">
             <p className="font-syne text-[10px] tracking-[0.4em] text-brand-accent uppercase font-bold">
               Commission a Print
             </p>
-            <h2 className="font-syne text-3xl md:text-5xl font-bold text-white leading-tight">
+            <h2 className="font-syne text-[clamp(1.5rem,5vw,3rem)] font-bold text-white leading-tight">
               Ready to bring the wild<br className="hidden md:block" /> into your space?
             </h2>
           </div>
           <a
             href="mailto:studio@wildlife.art"
-            className="group inline-flex items-center gap-4 bg-brand-accent text-black px-10 py-5 font-syne text-[11px] font-extrabold tracking-widest uppercase hover:bg-white transition-colors duration-500 shrink-0"
+            className="group inline-flex items-center justify-center gap-4 bg-brand-accent text-black w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 font-syne text-[11px] font-extrabold tracking-widest uppercase hover:bg-white transition-colors duration-500 shrink-0"
           >
             Start a Conversation
             <span className="material-symbols-outlined text-base transition-transform duration-300 group-hover:translate-x-1">
@@ -75,99 +75,96 @@ export default function Footer() {
       </div>
 
       {/* Mid section: columns */}
-      <div className="px-6 md:px-20 py-16 border-b border-white/5">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
-          {/* Brand */}
-          <div className="md:col-span-1 space-y-6">
-            <div className="font-syne text-2xl tracking-[0.2em] uppercase font-extrabold italic text-white">
-              WILDLIFE
-            </div>
-            <p className="text-sm text-white/35 leading-relaxed font-light">
-              Fine art wildlife photography.
-              Documenting the irreplaceable.
+      <div className="page-container py-12 sm:py-16 border-b border-white/5">
+        <div>
+          {/* Brand — full width on mobile */}
+          <div className="mb-8 sm:mb-10 md:mb-0 pb-8 sm:pb-10 md:pb-0 border-b md:border-b-0 border-white/5 space-y-5 sm:space-y-6 md:hidden">
+            <div className="font-syne text-xl tracking-[0.2em] uppercase font-extrabold italic text-white">WILDLIFE</div>
+            <p className="text-sm text-white/35 leading-relaxed font-light max-w-xs">
+              Fine art wildlife photography. Documenting the irreplaceable.
             </p>
             <div className="flex items-center gap-4">
               {SOCIAL_LINKS.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={s.label}
-                  className="text-white/25 hover:text-brand-accent transition-colors duration-300 hover:scale-110 transform"
-                >
+                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}
+                  className="text-white/25 hover:text-brand-accent transition-colors duration-300">
                   {s.icon}
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Nav */}
-          <div className="space-y-5">
-            <h4 className="font-syne text-[9px] tracking-[0.4em] uppercase text-white/30 font-bold">
-              Navigate
-            </h4>
-            <ul className="space-y-3">
-              {NAV_LINKS.map(({ label, href }) => (
-                <li key={label}>
-                  <a
-                    href={href}
-                    className="font-syne text-xs tracking-wider uppercase text-white/45 hover:text-white transition-colors duration-300 font-semibold"
-                  >
-                    {label}
+          {/* 3-col link grid on mobile, 4-col on md (brand re-appears as col 1) */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 sm:gap-10 md:gap-12">
+            {/* Brand — desktop only */}
+            <div className="hidden md:block space-y-6">
+              <div className="font-syne text-2xl tracking-[0.2em] uppercase font-extrabold italic text-white">WILDLIFE</div>
+              <p className="text-sm text-white/35 leading-relaxed font-light">
+                Fine art wildlife photography. Documenting the irreplaceable.
+              </p>
+              <div className="flex items-center gap-4">
+                {SOCIAL_LINKS.map((s) => (
+                  <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}
+                    className="text-white/25 hover:text-brand-accent transition-colors duration-300 hover:scale-110 transform">
+                    {s.icon}
                   </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+                ))}
+              </div>
+            </div>
 
-          {/* Contact */}
-          <div className="space-y-5">
-            <h4 className="font-syne text-[9px] tracking-[0.4em] uppercase text-white/30 font-bold">
-              Contact
-            </h4>
-            <ul className="space-y-3">
-              {[
-                { icon: "mail", text: "studio@wildlife.art" },
-                { icon: "location_on", text: "Currently: Spiti Valley, India" },
-                { icon: "schedule", text: "Response within 48h" },
-              ].map(({ icon, text }) => (
-                <li key={text} className="flex items-start gap-2">
-                  <span className="material-symbols-outlined text-brand-accent text-sm mt-0.5 shrink-0">
-                    {icon}
-                  </span>
-                  <span className="font-syne text-xs text-white/40 leading-relaxed">{text}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+            {/* Nav */}
+            <div className="space-y-4 sm:space-y-5">
+              <h4 className="font-syne text-[9px] tracking-[0.4em] uppercase text-white/30 font-bold">Navigate</h4>
+              <ul className="space-y-2 sm:space-y-3">
+                {NAV_LINKS.map(({ label, href }) => (
+                  <li key={label}>
+                    <a href={href} className="font-syne text-xs tracking-wider uppercase text-white/45 hover:text-white transition-colors duration-300 font-semibold">
+                      {label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          {/* Recognition */}
-          <div className="space-y-5">
-            <h4 className="font-syne text-[9px] tracking-[0.4em] uppercase text-white/30 font-bold">
-              Recognition
-            </h4>
-            <ul className="space-y-3">
-              {[
-                "National Geographic",
-                "BBC Wildlife Photographer",
-                "Sony World Photography",
-                "Wildlife Photographer of the Year",
-              ].map((item) => (
-                <li key={item} className="font-syne text-xs text-white/35 tracking-wide">
-                  — {item}
-                </li>
-              ))}
-            </ul>
+            {/* Contact */}
+            <div className="space-y-4 sm:space-y-5">
+              <h4 className="font-syne text-[9px] tracking-[0.4em] uppercase text-white/30 font-bold">Contact</h4>
+              <ul className="space-y-2 sm:space-y-3">
+                {[
+                  { icon: "mail", text: "studio@wildlife.art" },
+                  { icon: "location_on", text: "Spiti Valley, India" },
+                  { icon: "schedule", text: "Response within 48h" },
+                ].map(({ icon, text }) => (
+                  <li key={text} className="flex items-start gap-2">
+                    <span className="material-symbols-outlined text-brand-accent text-sm mt-0.5 shrink-0">{icon}</span>
+                    <span className="font-syne text-xs text-white/40 leading-relaxed">{text}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Recognition */}
+            <div className="space-y-4 sm:space-y-5 col-span-2 sm:col-span-1">
+              <h4 className="font-syne text-[9px] tracking-[0.4em] uppercase text-white/30 font-bold">Recognition</h4>
+              <ul className="space-y-2 sm:space-y-3">
+                {[
+                  "National Geographic",
+                  "BBC Wildlife Photographer",
+                  "Sony World Photography",
+                  "Wildlife Photographer of the Year",
+                ].map((item) => (
+                  <li key={item} className="font-syne text-xs text-white/35 tracking-wide">— {item}</li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Bottom bar */}
-      <div className="px-6 md:px-20 py-6">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-white/20 font-syne text-[9px] tracking-widest uppercase font-semibold">
+      <div className="page-container py-5 sm:py-6 safe-bottom">
+        <div className="flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center text-white/20 font-syne text-[8px] sm:text-[9px] tracking-widest uppercase font-semibold text-center sm:text-left">
           <span>© 2026 Pristine Wildlife Photography. All rights reserved.</span>
-          <div className="flex gap-8">
+          <div className="flex flex-wrap gap-4 sm:gap-8">
             {["Privacy Policy", "Terms of Use", "Cookie Policy"].map((item) => (
               <a key={item} href="#" className="hover:text-white/50 transition-colors duration-300">
                 {item}

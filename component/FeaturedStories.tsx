@@ -57,7 +57,7 @@ function StoryCard({ story, index }: { story: typeof STORIES[0]; index: number }
   return (
     <div
       ref={ref}
-      className={`grid md:grid-cols-12 gap-6 items-center transition-all duration-1000 ${
+      className={`grid gap-6 sm:gap-8 md:grid-cols-12 md:gap-6 items-center transition-all duration-1000 ${
         inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16"
       }`}
       style={{ transitionDelay: `${index * 150}ms` }}
@@ -71,18 +71,18 @@ function StoryCard({ story, index }: { story: typeof STORIES[0]; index: number }
         }`}
       >
         <img
-          className={`w-full ${story.aspect} object-cover transition-transform duration-1000 group-hover:scale-[1.04]`}
+          className={`w-full ${story.aspect} max-h-[70vw] sm:max-h-none object-cover transition-transform duration-1000 group-hover:scale-[1.04]`}
           alt={story.imageAlt}
           src={story.imageSrc}
         />
 
         {/* Year badge */}
-        <div className="absolute top-6 left-6 font-syne text-[9px] tracking-widest uppercase text-white/50 font-bold">
+        <div className="absolute top-4 sm:top-6 left-4 sm:left-6 font-syne text-[9px] tracking-widest uppercase text-white/50 font-bold">
           {story.year}
         </div>
 
-        {/* Hover info overlay */}
-        <div className="absolute bottom-0 left-0 right-0 glass-overlay p-7 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+        {/* Hover info overlay — always visible on touch, hover on desktop */}
+        <div className="absolute bottom-0 left-0 right-0 glass-overlay p-4 sm:p-7 translate-y-0 md:translate-y-full md:group-hover:translate-y-0 transition-transform duration-500">
           <div className="flex justify-between items-end">
             <div>
               <p className="font-syne text-[10px] tracking-wider text-brand-accent uppercase font-semibold">
@@ -92,14 +92,14 @@ function StoryCard({ story, index }: { story: typeof STORIES[0]; index: number }
                 {story.location}
               </p>
             </div>
-            <p className="font-syne text-[9px] tracking-widest text-white/30 uppercase">{story.gear}</p>
+            <p className="font-syne text-[9px] tracking-widest text-white/30 uppercase hidden sm:block">{story.gear}</p>
           </div>
         </div>
       </div>
 
       {/* Text col */}
       <div
-        className={`space-y-6 pt-8 md:pt-0 ${
+        className={`space-y-4 sm:space-y-6 pt-2 md:pt-0 ${
           isReverse ? "md:col-span-4 md:order-1" : "md:col-span-4 md:col-start-9"
         }`}
       >
@@ -110,7 +110,7 @@ function StoryCard({ story, index }: { story: typeof STORIES[0]; index: number }
           </span>
         </div>
 
-        <h2 className={`font-syne text-3xl md:text-5xl font-bold leading-[1.05] text-white ${isReverse ? "md:text-right" : ""}`}>
+        <h2 className={`font-syne text-[clamp(1.5rem,5vw,3rem)] font-bold leading-[1.05] text-white ${isReverse ? "md:text-right" : ""}`}>
           {story.title}
         </h2>
 
@@ -142,25 +142,25 @@ function StoryCard({ story, index }: { story: typeof STORIES[0]; index: number }
 
 export default function FeaturedStories() {
   return (
-    <section className="py-40 px-6 md:px-20 bg-[#050505]" id="portfolio">
+    <section className="section-pad bg-[#050505]" id="portfolio">
       {/* Section header */}
-      <div className="max-w-7xl mx-auto mb-24 flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div className="page-container mb-10 sm:mb-16 md:mb-24 flex flex-col sm:flex-row sm:items-end justify-between gap-4 sm:gap-6">
         <div>
-          <p className="font-syne text-[10px] tracking-[0.4em] text-brand-accent uppercase font-bold mb-4">
+          <p className="font-syne text-[10px] tracking-[0.4em] text-brand-accent uppercase font-bold mb-3 sm:mb-4">
             Portfolio · 2022–2024
           </p>
-          <h2 className="font-syne text-3xl md:text-5xl font-bold text-white">Featured Stories</h2>
+          <h2 className="font-syne text-[clamp(1.5rem,5vw,3rem)] font-bold text-white">Featured Stories</h2>
         </div>
         <a
           href="#"
-          className="inline-flex items-center gap-2 font-syne text-[10px] tracking-widest uppercase text-white/40 hover:text-brand-accent transition-colors duration-300 border-b border-white/10 hover:border-brand-accent pb-2 self-start md:self-auto"
+          className="inline-flex items-center gap-2 font-syne text-[10px] tracking-widest uppercase text-white/40 hover:text-brand-accent transition-colors duration-300 border-b border-white/10 hover:border-brand-accent pb-2 self-start"
         >
           View Full Archive
           <span className="material-symbols-outlined text-sm">arrow_forward</span>
         </a>
       </div>
 
-      <div className="max-w-7xl mx-auto space-y-40">
+      <div className="page-container space-y-12 sm:space-y-20 md:space-y-40">
         {STORIES.map((story, i) => (
           <StoryCard key={story.id} story={story} index={i} />
         ))}

@@ -8,7 +8,7 @@ import Newsletter from "@/component/Newsletter";
 
 export default function Home() {
   return (
-      <main className="flex-1 w-full">
+      <main className="flex-1 w-full min-w-0 overflow-x-hidden">
         <Hero />
         <FeaturedStories />
         <AboutSection />

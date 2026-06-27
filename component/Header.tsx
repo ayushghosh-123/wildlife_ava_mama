@@ -60,26 +60,25 @@ export default function Header() {
     <>
       {/* ── Capsule wrapper ─────────────────────────────────────────── */}
       <div
-        className={`fixed top-0 left-0 right-0 z-50 flex justify-center transition-all duration-500 ${
-          scrolled ? "top-4 px-4" : "top-6 px-6"
+        className={`fixed top-0 left-0 right-0 z-50 flex justify-center safe-top transition-all duration-500 ${
+          scrolled ? "pt-3 sm:pt-4 px-3 sm:px-4" : "pt-4 sm:pt-6 px-4 sm:px-6"
         }`}
-        style={{ position: "fixed", top: scrolled ? "16px" : "24px" }}
       >
         <header
           className={`
             w-full max-w-4xl flex items-center justify-between
-            px-5 md:px-6
+            px-3 sm:px-5 md:px-6
             transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]
             ${scrolled
-              ? "py-3 rounded-full bg-[#0c0c0c]/85 backdrop-blur-2xl border border-white/[0.08] shadow-[0_8px_40px_rgba(0,0,0,0.6)]"
-              : "py-4 rounded-full bg-white/[0.04] backdrop-blur-md border border-white/[0.06]"
+              ? "py-2 sm:py-2.5 md:py-3 rounded-full bg-[#0c0c0c]/85 backdrop-blur-2xl border border-white/[0.08] shadow-[0_8px_40px_rgba(0,0,0,0.6)]"
+              : "py-2.5 sm:py-3 md:py-4 rounded-full bg-white/[0.04] backdrop-blur-md border border-white/[0.06]"
             }
           `}
         >
           {/* Logo */}
           <a
             href="/"
-            className="font-syne text-base md:text-lg tracking-[0.18em] uppercase font-extrabold italic text-white shrink-0 pl-1"
+            className="font-syne text-xs sm:text-sm md:text-lg tracking-[0.12em] sm:tracking-[0.18em] uppercase font-extrabold italic text-white shrink-0 pl-0.5 sm:pl-1"
           >
             WILD
             <span className="text-brand-accent">LENS</span>
@@ -127,7 +126,7 @@ export default function Header() {
             <div className="hidden md:block w-[1px] h-4 bg-white/10" />
 
             {/* CTA pill */}
-            
+
 
             {/* Mobile hamburger */}
             <button
@@ -136,47 +135,44 @@ export default function Header() {
               className="md:hidden w-8 h-8 flex flex-col justify-center items-center gap-[5px] cursor-pointer"
             >
               <span
-                className={`block w-5 h-[1.5px] bg-white rounded-full transition-all duration-300 origin-center ${
-                  menuOpen ? "rotate-45 translate-y-[3.5px]" : ""
-                }`}
+                className={`block w-5 h-[1.5px] bg-white rounded-full transition-all duration-300 origin-center ${menuOpen ? "rotate-45 translate-y-[3.5px]" : ""
+                  }`}
               />
               <span
-                className={`block w-3.5 h-[1.5px] bg-white rounded-full transition-all duration-300 self-end ${
-                  menuOpen ? "opacity-0 w-0" : ""
-                }`}
+                className={`block w-3.5 h-[1.5px] bg-white rounded-full transition-all duration-300 self-end ${menuOpen ? "opacity-0 w-0" : ""
+                  }`}
               />
               <span
-                className={`block w-5 h-[1.5px] bg-white rounded-full transition-all duration-300 origin-center ${
-                  menuOpen ? "-rotate-45 -translate-y-[3.5px]" : ""
-                }`}
+                className={`block w-5 h-[1.5px] bg-white rounded-full transition-all duration-300 origin-center ${menuOpen ? "-rotate-45 -translate-y-[3.5px]" : ""
+                  }`}
               />
             </button>
           </div>
         </header>
+        {/* Outer wrapper shrinks top offset on very small screens */}
       </div>
 
       {/* ── Mobile full-screen drawer ───────────────────────────────── */}
       <div
-        className={`fixed inset-0 z-40 flex flex-col justify-center items-center
+        className={`fixed inset-0 z-40 flex flex-col justify-center items-center safe-top safe-bottom
           bg-[#070707]/97 backdrop-blur-2xl
           transition-all duration-500
           ${menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
         `}
       >
         {/* Close hint */}
-        <p className="font-syne text-[9px] tracking-[0.5em] uppercase text-white/20 mb-16">
+        <p className="font-syne text-[9px] tracking-[0.5em] uppercase text-white/20 mb-10 sm:mb-16">
           Navigation
         </p>
 
-        <nav className="flex flex-col items-center gap-8 mb-16">
+        <nav className="flex flex-col items-center gap-5 sm:gap-8 mb-10 sm:mb-16">
           {NAV_LINKS.map((item, i) => (
             <a
               key={item.label}
               href={item.href}
               onClick={() => setMenuOpen(false)}
-              className={`font-syne text-4xl font-extrabold uppercase tracking-wide text-white hover:text-brand-accent transition-all duration-300 ${
-                menuOpen ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
-              }`}
+              className={`font-syne text-3xl sm:text-4xl font-extrabold uppercase tracking-wide text-white hover:text-brand-accent transition-all duration-300 ${menuOpen ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
+                }`}
               style={{ transitionDelay: `${i * 70}ms` }}
             >
               {item.label}
@@ -185,10 +181,10 @@ export default function Header() {
         </nav>
 
         {/* Divider */}
-        <div className="w-12 h-[1px] bg-white/10 mb-10" />
+        <div className="w-12 h-[1px] bg-white/10 mb-8 sm:mb-10" />
 
         {/* Socials */}
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-6 sm:gap-8">
           {SOCIAL_LINKS.map((s) => (
             <a
               key={s.label}
