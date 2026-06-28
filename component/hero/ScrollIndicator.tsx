@@ -8,7 +8,7 @@ export default function ScrollIndicator() {
 
   return (
     <motion.a
-      href="#stories"
+      href="/portfolio"
       className="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-3 max-[480px]:hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-accent focus-visible:outline-offset-4"
       aria-label="Scroll to stories section"
       initial={{ opacity: 0 }}

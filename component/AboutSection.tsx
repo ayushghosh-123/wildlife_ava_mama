@@ -1,13 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import {
-  SectionLabel,
-  LineRevealHeading,
-  WordRevealText,
-  ClipRevealText,
-  FadeReveal,
-} from "@/component/ui/TextAnimations";
+import {SectionLabel, LineRevealHeading, WordRevealText, ClipRevealText, FadeReveal} from "@/component/ui/TextAnimations";
 
 function useInView(threshold = 0.2) {
   const ref = useRef<HTMLDivElement>(null);

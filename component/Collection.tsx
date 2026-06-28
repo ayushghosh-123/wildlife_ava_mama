@@ -47,7 +47,7 @@ export default function Collections() {
           <div className="h-px flex-1 bg-gradient-to-r from-transparent to-white/5 hidden md:block mx-12" />
           <FadeReveal delay={0.2} className="self-start">
             <a
-              href="#"
+              href="/collections"
               className="font-syne text-[10px] tracking-widest uppercase text-white/40 hover:text-brand-accent transition-colors duration-300 border-b border-white/10 hover:border-brand-accent pb-2 flex items-center gap-2"
             >
               All Collections
@@ -96,7 +96,7 @@ export default function Collections() {
                   </div>
                   <div className="mt-3 sm:mt-4 h-8 md:h-0 md:group-hover:h-8 overflow-hidden transition-all duration-500">
                     <a
-                      href="#"
+                      href="/portfolio"
                       className="inline-flex items-center gap-1 font-syne text-[9px] tracking-widest uppercase text-brand-accent font-bold"
                     >
                       Explore Series

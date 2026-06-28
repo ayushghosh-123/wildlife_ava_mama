@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { fadeUp, staggerContainer, lineReveal, easeLuxury, duration } from "@/lib/motion";
 import HeroStats from "./HeroStats";
 
-const HEADING_LINES = ["Wild is not captured.", "It is witnessed."] as const;
+const HEADING_LINES = ["10,000 HOURS IN THE HIDE.", "EVERY FRAME EARNED."] as const;
 
 export default function HeroContent() {
   return (
@@ -18,7 +18,7 @@ export default function HeroContent() {
         variants={fadeUp}
         className="font-syne text-[10px] sm:text-xs tracking-[0.45em] uppercase text-brand-accent font-bold mb-6 sm:mb-8"
       >
-        Fine Art Wildlife · Est. 2014
+        Bengal. Borneo. Botswana. The Field Never Stops Teaching.
       </motion.p>
 
       <h1 className="font-syne uppercase tracking-tighter text-white mb-6 sm:mb-10 w-full">
@@ -42,8 +42,7 @@ export default function HeroContent() {
         variants={fadeUp}
         className="text-sm sm:text-base md:text-lg text-white/55 max-w-md sm:max-w-xl md:max-w-2xl leading-relaxed font-light mb-10 sm:mb-14 px-2"
       >
-        A cinematic archive of Earth&apos;s last wild places — where patience meets
-        predawn light, and every frame honours the silence animals grant us.
+        Eight years in the Indian wild - offering field mentorship and photography expeditions across tiger reserves and Himalayan corridors.
       </motion.p>
 
       <motion.div
@@ -51,7 +50,7 @@ export default function HeroContent() {
         className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 w-full max-w-md sm:max-w-none"
       >
         <motion.a
-          href="#collections"
+          href="/collections"
           className="group relative bg-white text-black px-8 sm:px-12 py-4 sm:py-[1.125rem] font-syne text-[10px] font-bold tracking-[0.25em] uppercase overflow-hidden milled-edge text-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
@@ -62,7 +61,7 @@ export default function HeroContent() {
         </motion.a>
 
         <motion.a
-          href="#process"
+          href="/ethics"
           className="inline-flex items-center justify-center gap-2 border border-white/15 px-8 sm:px-12 py-4 sm:py-[1.125rem] font-syne text-[10px] font-bold tracking-[0.25em] uppercase text-white/80 hover:border-brand-accent hover:text-brand-accent backdrop-blur-sm transition-colors duration-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}

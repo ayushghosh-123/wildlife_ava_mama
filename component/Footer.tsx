@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import {
   SectionLabel,
   LineRevealHeading,
@@ -7,11 +8,11 @@ import {
 } from "@/component/ui/TextAnimations";
 
 const NAV_LINKS = [
-  { label: "Portfolio", href: "#portfolio" },
-  { label: "Collections", href: "#collections" },
-  { label: "The Ethics", href: "#ethics" },
-  { label: "Archives", href: "#" },
-  { label: "Inquire", href: "#contact" },
+  { label: "Portfolio", href: "/portfolio" },
+  { label: "Collections", href: "/collections" },
+  { label: "Ethics", href: "/ethics" },
+  { label: "Archives", href: "/portfolio" },
+  { label: "Inquire", href: "/inquire" },
 ];
 
 const SOCIAL_LINKS = [
@@ -55,36 +56,7 @@ const SOCIAL_LINKS = [
 
 export default function Footer() {
   return (
-    <footer
-      id="contact"
-      className="bg-[#050505] border-t border-white/[0.06]"
-    >
-      {/* Top section: CTA */}
-      <div className="page-container py-14 sm:py-20 border-b border-white/5">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 sm:gap-8">
-          <div className="space-y-3">
-            <SectionLabel className="font-syne text-[10px] tracking-[0.4em] text-brand-accent uppercase font-bold">
-              Commission a Print
-            </SectionLabel>
-            <LineRevealHeading
-              lines={["Ready to bring the wild", "into your space?"]}
-              className="font-syne text-[clamp(1.5rem,5vw,3rem)] font-bold text-white leading-tight"
-              stagger={0.1}
-            />
-          </div>
-          <FadeReveal delay={0.2}>
-            <a
-              href="mailto:studio@wildlife.art"
-              className="group inline-flex items-center justify-center gap-4 bg-brand-accent text-black w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 font-syne text-[11px] font-extrabold tracking-widest uppercase hover:bg-white transition-colors duration-500 shrink-0"
-            >
-              Start a Conversation
-              <span className="material-symbols-outlined text-base transition-transform duration-300 group-hover:translate-x-1">
-                arrow_forward
-              </span>
-            </a>
-          </FadeReveal>
-        </div>
-      </div>
+    <footer id="contact" className="bg-[#050505] border-t border-white/[0.06]">
 
       {/* Mid section: columns */}
       <div className="page-container py-12 sm:py-16 border-b border-white/5">
@@ -109,7 +81,7 @@ export default function Footer() {
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 sm:gap-10 md:gap-12">
             {/* Brand — desktop only */}
             <div className="hidden md:block space-y-6">
-              <div className="font-syne text-2xl tracking-[0.2em] uppercase font-extrabold italic text-white">WILDLIFE</div>
+              <div className="font-syne text-2xl tracking-[0.2em] uppercase font-extrabold italic text-white">PXLALPHA</div>
               <p className="text-sm text-white/35 leading-relaxed font-light">
                 Fine art wildlife photography. Documenting the irreplaceable.
               </p>
@@ -129,9 +101,9 @@ export default function Footer() {
               <ul className="space-y-2 sm:space-y-3">
                 {NAV_LINKS.map(({ label, href }) => (
                   <li key={label}>
-                    <a href={href} className="font-syne text-xs tracking-wider uppercase text-white/45 hover:text-white transition-colors duration-300 font-semibold">
+                    <Link href={href} className="font-syne text-xs tracking-wider uppercase text-white/45 hover:text-white transition-colors duration-300 font-semibold">
                       {label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>

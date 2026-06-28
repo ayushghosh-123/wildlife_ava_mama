@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import { statItem, staggerContainer } from "@/lib/motion";
 
 const STATS = [
-  { value: "50+", label: "Countries" },
+  { value: "10+", label: "Cities" },
   { value: "300+", label: "Species" },
-  { value: "12", label: "Years" },
+  { value: "8", label: "Years" },
 ] as const;
 
 export default function HeroStats() {

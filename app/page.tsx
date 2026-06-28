@@ -1,7 +1,7 @@
 import Hero from "@/component/Hero";
 import FeaturedStories from "@/component/FeaturedStories";
 import AboutSection from "@/component/AboutSection";
-import Collections from "@/component/Collection";
+import Collections from "@/component/Collection"
 import BehindTheShot from "@/component/BehindTheShot";
 import Newsletter from "@/component/Newsletter";
 
@@ -12,7 +12,7 @@ export default function Home() {
         <Hero />
         <FeaturedStories />
         <AboutSection />
-        <Collections />
+        <Collections /> 
         <BehindTheShot />
         <Newsletter />
       </main>

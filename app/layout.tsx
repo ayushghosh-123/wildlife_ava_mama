@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next";
 import { Syne, Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
 import Footer from "@/component/Footer";
+import Header from "@/component/Header";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -36,17 +37,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${syne.variable} ${hankenGrotesk.variable} h-full antialiased`}
-    >
-      <head>
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap"
-        />
-      </head>
+    <html lang="en" data-scroll-behavior="smooth">
       <body className="min-h-full bg-[#050505] text-[#e5e2e1] font-sans flex flex-col safe-bottom" suppressHydrationWarning>
+        <Header />
         {children}
         <Footer />
       </body>

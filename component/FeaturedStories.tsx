@@ -147,7 +147,7 @@ export default function FeaturedStories() {
         />
         <FadeReveal delay={0.2} className="self-start">
           <a
-            href="#"
+            href="/portfolio"
             className="inline-flex items-center gap-2 font-syne text-[10px] tracking-widest uppercase text-white/40 hover:text-brand-accent transition-colors duration-300 border-b border-white/10 hover:border-brand-accent pb-2"
           >
             View Full Archive

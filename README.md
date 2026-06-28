@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PXL ALPHA Website
+
+This is a Next.js app using the App Router. The project is organized into route pages under `app/` and reusable UI components under `component/`.
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies and start the dev server:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000` in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## App Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Root layout and shared rendering
 
-## Learn More
+- `app/layout.tsx` renders the global page structure.
+- `app/layout.tsx` includes the shared `Header` and `Footer` on every page.
+- `app/page.tsx` is the homepage and renders the following page sections:
+  - `component/Hero.tsx`
+  - `component/AboutSection.tsx`
+  - `component/Collection.tsx`
+  - `component/FeaturedStories.tsx`
+  - `component/BehindTheShot.tsx`
+  - `component/Newsletter.tsx`
 
-To learn more about Next.js, take a look at the following resources:
+### Route pages
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `app/page.tsx` — homepage
+- `app/portfolio/page.tsx` — portfolio page rendering -`component/Collection.tsx`
+- `app/collections/page.tsx` — collections page
+- `app/ethics/page.tsx` — ethics page
+- `app/inquire/page.tsx` — inquire/contact page
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Component structure
 
-## Deploy on Vercel
+### Top-level components
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `component/Header.tsx`
+  - site navigation
+  - route-based links for Home, Portfolio, Collections, Ethics, Inquire
+- `component/Footer.tsx`
+  - contact call-to-action
+  - footer navigation links and social icons
+- `component/Hero.tsx`
+  - site hero section
+- `component/AboutSection.tsx`
+  - summary section about the project
+- `component/Collection.tsx`
+  - featured collection cards and navigation CTA
+- `component/FeaturedStories.tsx`
+  - featured story cards and portfolio CTA
+- `component/BehindTheShot.tsx`
+  - behind-the-scenes section
+- `component/Newsletter.tsx`
+  - newsletter signup section
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Nested component folders
+
+- `component/hero/`
+  - `Hero.tsx`
+  - `HeroBackground.tsx`
+  - `HeroContent.tsx`
+  - `HeroNav.tsx`
+  - `FloatingGradients.tsx`
+  - `GrainOverlay.tsx`
+  - `ScrollIndicator.tsx`
+- `component/ui/`
+  - `TextAnimations.tsx`
+    - animation utilities used across hero, sections, and cards
+- `lib/`
+  - `motion.ts`
+  - `useReducedMotion.ts`
+
+## Navigation
+
+The site uses route-based navigation rather than hash anchors.
+
+- `/` — home
+- `/portfolio` — portfolio archive
+- `/collections` — collections overview
+- `/ethics` — ethics page
+- `/inquire` — contact/inquire page
+
+## Build
+
+```bash
+npm run build
+```
+
+## Notes
+
+- Global styles are in `app/globals.css`.
+- `Header` and `Footer` are shared across all routes through `app/layout.tsx`.
+- Page route files are the entry points for each URL in the App Router.

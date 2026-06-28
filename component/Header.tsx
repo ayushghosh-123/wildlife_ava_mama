@@ -1,12 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 const NAV_LINKS = [
-  { label: "Portfolio", href: "#portfolio" },
-  { label: "Collections", href: "#collections" },
-  { label: "Ethics", href: "#ethics" },
-  { label: "Inquire", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "Portfolio", href: "/portfolio" },
+  { label: "About", href: "/aboutsection" },
+  { label: "Collections", href: "/collections" },
+  { label: "Ethics", href: "/ethics" },
+  { label: "Inquire", href: "/inquire" },
 ];
 
 const SOCIAL_LINKS = [
@@ -76,13 +79,10 @@ export default function Header() {
           `}
         >
           {/* Logo */}
-          <a
-            href="/"
-            className="font-syne text-xs sm:text-sm md:text-lg tracking-[0.12em] sm:tracking-[0.18em] uppercase font-extrabold italic text-white shrink-0 pl-0.5 sm:pl-1"
-          >
-            WILD
-            <span className="text-brand-accent">LENS</span>
-          </a>
+          <Link href="/" className="font-syne text-xs sm:text-sm md:text-lg tracking-[0.12em] sm:tracking-[0.18em] uppercase font-extrabold italic text-white shrink-0 pl-0.5 sm:pl-1">
+            PXL
+            <span className="text-brand-accent">ALPHA</span>
+          </Link> 
 
           {/* Desktop nav — centered */}
           <nav className="hidden md:flex items-center gap-1">
@@ -109,7 +109,7 @@ export default function Header() {
             {/* Social icons */}
             <div className="hidden md:flex items-center gap-3 pr-1">
               {SOCIAL_LINKS.map((s) => (
-                <a
+                <Link
                   key={s.label}
                   href={s.href}
                   target="_blank"
@@ -118,7 +118,7 @@ export default function Header() {
                   className="text-white/30 hover:text-brand-accent transition-colors duration-300"
                 >
                   {s.icon}
-                </a>
+                </Link>
               ))}
             </div>
 
@@ -126,7 +126,6 @@ export default function Header() {
             <div className="hidden md:block w-[1px] h-4 bg-white/10" />
 
             {/* CTA pill */}
-
 
             {/* Mobile hamburger */}
             <button
@@ -167,7 +166,7 @@ export default function Header() {
 
         <nav className="flex flex-col items-center gap-5 sm:gap-8 mb-10 sm:mb-16">
           {NAV_LINKS.map((item, i) => (
-            <a
+            <Link
               key={item.label}
               href={item.href}
               onClick={() => setMenuOpen(false)}
@@ -176,7 +175,7 @@ export default function Header() {
               style={{ transitionDelay: `${i * 70}ms` }}
             >
               {item.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -186,7 +185,7 @@ export default function Header() {
         {/* Socials */}
         <div className="flex items-center gap-6 sm:gap-8">
           {SOCIAL_LINKS.map((s) => (
-            <a
+            <Link
               key={s.label}
               href={s.href}
               target="_blank"
@@ -195,7 +194,7 @@ export default function Header() {
               className="text-white/30 hover:text-brand-accent transition-colors duration-300"
             >
               <span className="scale-150 block">{s.icon}</span>
-            </a>
+            </Link>
           ))}
         </div>
       </div>
