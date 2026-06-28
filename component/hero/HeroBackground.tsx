@@ -1,16 +1,17 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { useFinePointer, useReducedMotion } from "@/lib/useReducedMotion";
 
-const HERO_IMAGE = "/hero_section.png";
+const HERO_VIDEO = "/hero_video.mp4";
 
 export default function HeroBackground() {
   const bgRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const reducedMotion = useReducedMotion();
   const finePointer = useFinePointer();
+  const [isMuted, setIsMuted] = useState(true);
 
   useEffect(() => {
     const bg = bgRef.current;
@@ -66,12 +67,15 @@ export default function HeroBackground() {
           className="absolute inset-[-8%] will-change-transform"
           style={{ transform: "translate3d(0,0,0)" }}
         >
-          <img
-            src={HERO_IMAGE}
-            alt=""
-            role="presentation"
+          <video
+            src={HERO_VIDEO}
+            autoPlay
+            muted={isMuted}
+            loop
+            playsInline
+            preload="auto"
+            aria-hidden="true"
             className="h-full w-full object-cover select-none pointer-events-none"
-            fetchPriority="high"
           />
         </div>
       </div>
@@ -86,6 +90,15 @@ export default function HeroBackground() {
 
       {/* Animated light sweep */}
       <div className="hero-light-sweep absolute inset-0 z-[2] pointer-events-none" aria-hidden="true" />
+
+      <button
+        type="button"
+        onClick={() => setIsMuted((prev) => !prev)}
+        className="absolute bottom-4 right-4 z-[3] rounded-full border border-white/20 bg-black/35 p-3 text-sm text-white backdrop-blur-md transition hover:bg-black/55"
+        aria-label={isMuted ? "Enable background sound" : "Mute background sound"}
+      >
+        {isMuted ? "🔈" : "🔊"}
+      </button>
     </>
   );
 }
