@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import {SectionLabel, LineRevealHeading, WordRevealText, ClipRevealText, FadeReveal} from "@/component/ui/TextAnimations";
+import { SectionLabel, LineRevealHeading, WordRevealText, ClipRevealText, FadeReveal } from "@/component/ui/TextAnimations";
 
 function useInView(threshold = 0.2) {
   const ref = useRef<HTMLDivElement>(null);
@@ -88,7 +88,7 @@ export default function AboutSection() {
                 The Eye Behind the Lens
               </SectionLabel>
               <LineRevealHeading
-                lines={["Witness to the wild", "for over 15 years."]}
+                lines={["Witness to the wild", "for over 8 years."]}
                 className="font-syne text-[clamp(1.75rem,6vw,3.75rem)] font-bold leading-tight text-white"
                 lineClasses={["", "text-white/40"]}
                 stagger={0.14}
@@ -127,26 +127,16 @@ export default function AboutSection() {
             </FadeReveal>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-10">
-            {[
-              { target: 48, suffix: "+", label: "Countries Explored", desc: "From Svalbard to Borneo" },
-              { target: 12000, suffix: "+", label: "Hours in the Field", desc: "Across 15 years of work" },
-              { target: 200, suffix: "+", label: "Species Documented", desc: "Mammals, birds, marine" },
-              { target: 50, suffix: "+", label: "International Awards", desc: "Recognized globally" },
-            ].map(({ target, suffix, label, desc }, i) => (
-              <FadeReveal key={label} delay={0.1 + i * 0.08} y={36}>
-                <div className="p-5 sm:p-6 border border-white/5 hover:border-brand-accent/30 transition-colors duration-500 group h-full">
-                  <AnimatedCounter target={target} suffix={suffix} compact={target >= 1000} />
-                  <span className="font-syne text-[9px] tracking-widest opacity-60 uppercase font-semibold mt-2 block">
-                    {label}
-                  </span>
-                  <span className="font-syne text-[9px] text-brand-accent/0 group-hover:text-brand-accent/60 transition-all duration-500 block mt-1">
-                    {desc}
-                  </span>
-                </div>
-              </FadeReveal>
-            ))}
+          {/* make it a round image wherere the protfolio owner saw her image in the public folder Image folder present . There avamama image is owner this part */}
+          <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 mx-auto rounded-full overflow-hidden border border-white/10 shadow-2xl shrink-0">
+            <img
+              src="/Images/avamama.jpg"
+              alt="Profile Avatar"
+              className="w-full h-full object-cover scale-115 transition-transform duration-500 hover:scale-105"
+              style={{ objectPosition: "center 75%" }}
+            />
           </div>
+
         </div>
       </div>
     </section>

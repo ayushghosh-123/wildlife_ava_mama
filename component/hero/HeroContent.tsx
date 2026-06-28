@@ -67,9 +67,6 @@ export default function HeroContent() {
           whileTap={{ scale: 0.98 }}
           transition={{ duration: duration.fast, ease: easeLuxury }}
         >
-          <span className="material-symbols-outlined text-sm" aria-hidden="true">
-            play_circle
-          </span>
           Watch Documentary
         </motion.a>
       </motion.div>

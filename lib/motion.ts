@@ -3,6 +3,7 @@ import type { Transition, Variants } from "framer-motion";
 /** Luxury editorial easing — slow deceleration, no bounce */
 export const easeLuxury: Transition["ease"] = [0.16, 1, 0.3, 1];
 
+// duration of animation - 
 export const duration = {
   fast: 0.45,
   base: 0.85,
@@ -10,6 +11,7 @@ export const duration = {
   cinematic: 1.6,
 } as const;
 
+// fade up animation - used for most of the animations
 export const fadeUp: Variants = {
   hidden: { opacity: 0, y: 32 },
   visible: {
@@ -19,6 +21,8 @@ export const fadeUp: Variants = {
   },
 };
 
+
+// fade in animation - used for most of the animations
 export const fadeIn: Variants = {
   hidden: { opacity: 0 },
   visible: {
@@ -27,6 +31,7 @@ export const fadeIn: Variants = {
   },
 };
 
+// stagger container animation - used for most of the animations
 export const staggerContainer: Variants = {
   hidden: {},
   visible: {
@@ -37,6 +42,8 @@ export const staggerContainer: Variants = {
   },
 };
 
+
+// stagger fast animation - used for most of the animations
 export const staggerFast: Variants = {
   hidden: {},
   visible: {
@@ -47,6 +54,7 @@ export const staggerFast: Variants = {
   },
 };
 
+// line reveal animation - used for most of the animations
 export const lineReveal: Variants = {
   hidden: { y: "110%" },
   visible: {
@@ -55,6 +63,8 @@ export const lineReveal: Variants = {
   },
 };
 
+
+// scale in animation - used for most of the animations
 export const scaleIn: Variants = {
   hidden: { opacity: 0, scale: 0.96 },
   visible: {
@@ -64,6 +74,7 @@ export const scaleIn: Variants = {
   },
 };
 
+// nav item animation - used for most of the animations
 export const navItem: Variants = {
   hidden: { opacity: 0, y: -12 },
   visible: {
