@@ -90,15 +90,6 @@ export default function HeroBackground() {
 
       {/* Animated light sweep */}
       <div className="hero-light-sweep absolute inset-0 z-[2] pointer-events-none" aria-hidden="true" />
-
-      <button
-        type="button"
-        onClick={() => setIsMuted((prev) => !prev)}
-        className="absolute bottom-4 right-4 z-[3] rounded-full border border-white/20 bg-black/35 p-3 text-sm text-white backdrop-blur-md transition hover:bg-black/55"
-        aria-label={isMuted ? "Enable background sound" : "Mute background sound"}
-      >
-        {isMuted ? "🔈" : "🔊"}
-      </button>
     </>
   );
 }

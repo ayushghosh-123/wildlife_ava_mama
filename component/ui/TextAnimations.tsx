@@ -244,8 +244,11 @@ export function ClipRevealText({
   );
 }
 
-// make the animation like when scroll one by one word comes up with fade in and fade out effect and also add the animation when scroll down the page the text should come up with fade in effect and when scroll up the page the text should come down with fade out effect
 
+
+// make a simple animation effect for the text when scroll down the page the text should come up with fade in effect and when scroll up the page the text should come down with fade out effect and also add the animation when scroll one by one word comes up with fade in and fade out effect also scroll up the text should go down with fade out effect and when scroll down the text should come up with fade in effect
+
+/** Element reveal (GSAP) — fades up on scroll down, reverses on scroll up */
 export function FadeReveal({
   children,
   className = "",
@@ -262,14 +265,22 @@ export function FadeReveal({
     if (!el || reduced) return;
 
     const ctx = gsap.context(() => {
-      gsap.from(el, {
-        scrollTrigger: { trigger: el, start, toggleActions: "play none none none" },
-        y,
-        opacity: 0,
-        duration: 0.9,
-        delay,
-        ease: "power3.out",
-      });
+      gsap.fromTo(
+        el,
+        { y, opacity: 0 },
+        {
+          scrollTrigger: {
+            trigger: el,
+            start,
+            toggleActions: "play reverse play reverse",
+          },
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          delay,
+          ease: "power3.out",
+        }
+      );
     }, el);
 
     return () => ctx.revert();
@@ -281,6 +292,64 @@ export function FadeReveal({
     </Tag>
   );
 }
+
+/** Word-by-word reveal (GSAP) — words animate sequentially on scroll down and reverse on scroll up */
+export function WordScrollReveal({
+  children,
+  className = "",
+  delay = 0,
+  stagger = 0.03,
+  start = "top 88%",
+  as: Tag = "p",
+}: BaseProps) {
+  const ref = useRef<HTMLElement>(null);
+  const reduced = useReducedMotion();
+  const text = typeof children === "string" ? children : "";
+
+  useEffect(() => {
+    const root = ref.current;
+    if (!root || reduced || !text) return;
+
+    const words = root.querySelectorAll("[data-word]");
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        words,
+        { y: 20, opacity: 0 },
+        {
+          scrollTrigger: {
+            trigger: root,
+            start,
+            toggleActions: "play reverse play reverse",
+          },
+          y: 0,
+          opacity: 1,
+          duration: 0.6,
+          stagger,
+          delay,
+          ease: "power2.out",
+        }
+      );
+    }, root);
+
+    return () => ctx.revert();
+  }, [reduced, delay, stagger, start, text]);
+
+  if (!text) return <Tag className={className}>{children}</Tag>;
+
+  return (
+    <Tag ref={ref as Ref<never>} className={className}>
+      {text.split(" ").map((word, i) => (
+        <span key={`${word}-${i}`} className="inline-block overflow-hidden mr-[0.25em]">
+          <span data-word className="inline-block">
+            {word}
+          </span>
+        </span>
+      ))}
+    </Tag>
+  );
+}
+
 
 /** Section header bundle — label + heading + optional side content */
 export function SectionIntro({

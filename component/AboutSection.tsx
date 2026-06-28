@@ -99,9 +99,7 @@ export default function AboutSection() {
               className="text-sm sm:text-base text-white/60 leading-relaxed"
               delay={0.2}
             >
-              I don&apos;t just take photos; I tell stories of existence. My goal is to bridge the
-              gap between the modern world and the ancient rhythm of the wild. Every image is a
-              testament to the fragile beauty we are duty-bound to protect.
+            For over 8 years, I've dedicated my life to documenting the untamed beauty of the natural world. I don't just capture wildlife-I tell stories of survival, resilience, and the delicate balance of nature. Through patience, respect, and countless hours in the field, my work aims to connect people with the wild, inspiring a deeper appreciation for the ecosystems we are privileged to witness and responsible for protecting. Every photograph is a reminder that nature's greatest stories deserve to be seen, remembered, and preserved.
             </WordRevealText>
 
             <blockquote className="border-l-2 border-brand-accent pl-4 sm:pl-6 py-2">
