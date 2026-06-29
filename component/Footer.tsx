@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { FaInstagram , FaPinterest } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 
 const NAV_LINKS = [
   { label: "Portfolio", href: "/portfolio" },
@@ -11,6 +11,14 @@ const NAV_LINKS = [
   { label: "Inquire", href: "/inquire" },
 ];
 export default function Footer() {
+  const router = useRouter();
+  const handleLogoClick = (e: React.MouseEvent) => {
+    if (e.altKey) {
+      e.preventDefault();
+      // routing on admin file also
+      router.push("/collections?admin=true");
+    }
+  };
   return (
     <footer id="contact" className="bg-[#050505] border-t border-white/[0.06]">
 
@@ -19,12 +27,18 @@ export default function Footer() {
         <div>
           {/* Brand — full width on mobile */}
           <div className="mb-8 sm:mb-10 md:mb-0 pb-8 sm:pb-10 md:pb-0 border-b md:border-b-0 border-white/5 space-y-5 sm:space-y-6 md:hidden">
-            <div className="font-syne text-xl tracking-[0.2em] uppercase font-extrabold italic text-white">WILDLIFE</div>
+            <div
+              onClick={handleLogoClick}
+              className="font-syne text-2xl tracking-[0.2em] uppercase font-extrabold italic text-white cursor-pointer select-none"
+              title="Alt + Click to open Admin Panel"
+            >
+              PXLALPHA
+            </div>
             <p className="text-sm text-white/35 leading-relaxed font-light max-w-xs">
               Fine art wildlife photography. Documenting the irreplaceable.
             </p>
             <div className="flex items-center gap-4">
-              
+
             </div>
           </div>
 
@@ -32,12 +46,18 @@ export default function Footer() {
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 sm:gap-10 md:gap-12">
             {/* Brand — desktop only */}
             <div className="hidden md:block space-y-6">
-              <div className="font-syne text-2xl tracking-[0.2em] uppercase font-extrabold italic text-white">PXLALPHA</div>
+              <div
+                onClick={handleLogoClick}
+                className="font-syne text-2xl tracking-[0.2em] uppercase font-extrabold italic text-white cursor-pointer select-none"
+                title="Alt + Click to open Admin Panel"
+              >
+                PXLALPHA
+              </div>
               <p className="text-sm text-white/35 leading-relaxed font-light">
                 Fine art wildlife photography. Documenting the irreplaceable.
               </p>
               <div className="flex items-center gap-4">
-                
+
               </div>
             </div>
 
