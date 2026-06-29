@@ -16,13 +16,13 @@ const NAV_LINKS = [
 
 const SOCIAL_LINKS = [
   {
-    href: "https://instagram.com",
+    href: "https://www.instagram.com/pxl_alpha",
     label: "Instagram",
     icon: <FaInstagram className="w-5 h-5 text-white/80 group-hover:text-white transition-colors" />
   },
   // add pinerest and logo here only
   {
-    href: "",
+    href: "https://in.pinterest.com/anuvabde/",
     label: "Pinterest",
     icon: <FaPinterest className="w-5 h-5 text-white/80 group-hover:text-white transition-colors" />
   }
