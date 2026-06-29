@@ -93,7 +93,7 @@ export default function AdminWebinarPage() {
           time: "",
           speaker: "",
           image: "",
-          whatsappNumber: "+919876543210",
+          whatsappNumber: "+919531769585",
           hasCollectionToggle: false,
           collectionId: "",
           showEthics: true,
