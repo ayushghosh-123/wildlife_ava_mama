@@ -8,14 +8,12 @@ const HERO_VIDEO = "/hero_video.mp4";
 
 export default function HeroBackground() {
   const bgRef = useRef<HTMLDivElement>(null);
-  const overlayRef = useRef<HTMLDivElement>(null);
   const reducedMotion = useReducedMotion();
   const finePointer = useFinePointer();
-  const [isMuted, setIsMuted] = useState(true);
+  const [isMuted] = useState(true);
 
   useEffect(() => {
     const bg = bgRef.current;
-    const overlay = overlayRef.current;
     if (!bg) return;
 
     let removeMouse: (() => void) | undefined;
@@ -27,16 +25,6 @@ export default function HeroBackground() {
           { scale: 1.18 },
           { scale: 1.06, duration: 9, ease: "power2.out" }
         );
-
-        if (overlay) {
-          gsap.to(overlay, {
-            opacity: 0.88,
-            duration: 5,
-            ease: "sine.inOut",
-            repeat: -1,
-            yoyo: true,
-          });
-        }
       }
     }, bg);
 
@@ -80,16 +68,8 @@ export default function HeroBackground() {
         </div>
       </div>
 
-      {/* Cinematic grade + vignette */}
-      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/75 via-black/25 to-[#050505]" />
-      <div className="absolute inset-0 z-[1] bg-gradient-to-r from-black/55 via-transparent to-black/30" />
-      <div
-        ref={overlayRef}
-        className="absolute inset-0 z-[2] bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(0,0,0,0.45)_72%,rgba(0,0,0,0.85)_100%)]"
-      />
-
-      {/* Animated light sweep */}
-      <div className="hero-light-sweep absolute inset-0 z-[2] pointer-events-none" aria-hidden="true" />
+      {/* Single flat black overlay at 30% opacity — no gradient, no vignette */}
+      <div className="absolute inset-0 z-[1] bg-black/30 pointer-events-none" />
     </>
   );
 }

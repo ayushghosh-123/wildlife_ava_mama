@@ -1,41 +1,43 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { SectionIntro, WordRevealHeading, WordRevealText, ClipRevealText, FadeReveal, SectionLabel } from "@/component/ui/TextAnimations";
 
 const CASE_STUDIES = [
   {
     title: "The 72-Hour Blind",
     quote: "Sometimes the best tool isn't the lens, but the ability to become a statue.",
-    body: "To capture the elusive Harpy Eagle, we spent three days in silence, moving only when necessary, eating only dry rations. The eagle appeared on day three, as if it had decided we were part of the forest.",
-    stat: "18 Days Total",
-    statLabel: "Trip Duration",
-    icon: "timer",
-    tags: ["Amazon Rainforest", "Harpy Eagle", "Long Exposure"],
-    src: "https://lh3.googleusercontent.com/aida-public/AB6AXuADFFCrUBpqoVCiFGtKb3gNGOlezNbzYwXIks-tD9iiV7TkEGVAkgYJ-RMfBSWFbcTAbNPI10jBfsJFOPfwAyGSN444eqiUjC4wjod8FhvjaKiYJjBSshyml67vx1HGCsAMGwx7pAcu78CopOdWpgRm94RtJw9XyZI0zP8JNfV_UdCS7OJJoSXFOhQNQjo9NEOGiaAzy7QpU2pE5pSJnDJJTkz3qwol91GWLwgQMTlDAzbi4HwNmb1R1hABXK2lbkSnuR-iMtUs0_7y",
-    alt: "Photographer camouflage blind in rainforest",
+    body: "To capture the elusive Asian Openbill Stork, we spent three days in silence, moving only when necessary. The bird appeared on day three.",
+    stat: "18 Days Total · Trip Duration",
+    tags: ["Himalayan Corridor", "Asian Openbill Stork", "Patience"],
+    src: "/Images/bird2.jpeg",
+    alt: "Wildlife photography in high altitude",
   },
   {
-    title: "Depths of the Abyss",
+    title: "Depths of the Wild",
     quote: "Light is a stranger in the deep; we must bring it with reverence.",
-    body: "Photographing bioluminescent species requires a delicate balance between illumination and preservation. We developed a custom filter system that preserved the deep-sea ambiance without disturbing the creatures.",
-    stat: "120 Meters",
-    statLabel: "Operating Depth",
-    icon: "water_drop",
-    tags: ["Bioluminescence", "Deep Sea", "Custom Rig"],
-    src: "https://lh3.googleusercontent.com/aida-public/AB6AXuCH6m1qX353_VrqMUgb-MWY663-dfIcZQCzgrgU54vQ-K4DOXyka6eFGc2nJOqmdeSsS4Ejeggp_2uHyk94jD678WhxeOdFOYCpy77QrV1pAD1kHN6fwU0zCM8bQwz9RK8Icis6hYNPKVTTaTBFeBKoF903sFH6X5zRNFLip6YbUCydc-QMqI80mRch6-Dp_m7EHJTWEkg3dd8ygXWO9ufHD2-FpQiBGaOYhG0swN-5BhYO6VcxTLPtUMbDmb2_b6WEXqIFBx2Y69xZ",
-    alt: "Underwater camera rig with custom strobes",
+    body: "Photographing apex predators requires a delicate balance between distance and trust. We positioned along the natural corridor where survival is silent.",
+    stat: "120 Hours · Field Mentorship",
+    tags: ["Apex Predators", "Wild Habitat", "Natural Light"],
+    src: "/Images/cat1.jpeg",
+    alt: "Apex predator in wild habitat",
   },
   {
     title: "The Ghost Hour",
     quote: "Between 4 and 6 AM, the world belongs entirely to wildlife.",
-    body: "In Borneo's ancient peatland forests, I spent 11 mornings hidden before a sun bear finally approached. The ambient light at pre-dawn rendered a cinematic blue-black tonal range no artificial light could replicate.",
-    stat: "11 Mornings",
-    statLabel: "Consecutive Days",
-    icon: "dark_mode",
-    tags: ["Borneo", "Sun Bear", "Pre-dawn"],
-    src: "https://lh3.googleusercontent.com/aida-public/AB6AXuAA1cP00H7TIYrpHWB-MXtANkMHay6awMuzy9RpkKMr0RTB1XoHQccOoVjARblpEArjWa5dFnU6uOguNGsv4wOs5AsgN8x2sfRA5n4rbFUVrN-fA-3s7uLoYdrjQLu5KRaM__-iZmDIMxn_qWxwUoxgO7jpqACUjA0ogPiqR-x75MfTszWq5wv28nTcAEy8XUVUNdN047R9kcBotEHegAQUqtwFJuFYS6IpQX6PToUdrvvPbvL0wiFS8UomCOOvVLlqfFseEzSpRLFa",
+    body: "In ancient peatland forests, I spent 11 mornings hidden before the first light found the blossoms and the bird found the perfect moment.",
+    stat: "11 Mornings · Consecutive Days",
+    tags: ["Borneo", "Pre-dawn", "Corridors"],
+    src: "/Images/bird1.jpeg",
     alt: "Misty forest at pre-dawn blue hour",
+  },
+  {
+    title: "Blossom & Flight",
+    quote: "Precision timing captures moments invisible to the naked eye.",
+    body: "High in the canopy, patience rewarded us with a fleeting interaction between wild flora and migrating fauna.",
+    stat: "5 Days · Canopy Station",
+    tags: ["Canopy", "Flora & Fauna", "High Speed"],
+    src: "/Images/flower1.jpeg",
+    alt: "Bird interacting with wild blossoms",
   },
 ];
 
@@ -45,136 +47,102 @@ export default function BehindTheShot() {
 
   function scrollTo(i: number) {
     if (!scrollRef.current) return;
-    const el = scrollRef.current.children[i] as HTMLElement;
-    el.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
-    setActive(i);
+    const card = scrollRef.current.children[i] as HTMLElement;
+    if (card) {
+      card.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
+      setActive(i);
+    }
   }
 
   return (
-    <section id="process" className="section-pad bg-[#0a0a0a] overflow-hidden">
-      <div className="page-container">
-        <div className="mb-4 sm:mb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4">
-          <SectionIntro
-            label="Process & Ethics"
-            title="Behind The Shot"
-            headingClassName="font-syne text-[clamp(1.35rem,4.2vw,2.4rem)] font-bold text-white"
-          />
+    <section id="process" className="bg-black w-full py-16 sm:py-24 overflow-hidden border-t border-white/10">
+      <div className="w-full">
+        {/* Header & Horizontal Scroll Navigation */}
+        <div className="max-w-7xl mx-auto px-6 sm:px-12 mb-8 flex items-center justify-between">
+          <div>
+            <p className="font-sans text-[9px] uppercase tracking-[0.25em] text-white/50 mb-1">
+              Expeditions & Masterclasses
+            </p>
+            <h2 className="font-sans text-[24px] sm:text-[32px] font-extralight text-white uppercase tracking-tight">
+              Behind The Shot
+            </h2>
+          </div>
 
-          <FadeReveal delay={0.15} className="flex items-center gap-2 sm:gap-3">
-            {CASE_STUDIES.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => scrollTo(i)}
-                aria-label={`Slide ${i + 1}`}
-                className={`transition-all duration-300 cursor-pointer min-h-[36px] min-w-[36px] flex items-center justify-center -m-2 ${i === active
-                    ? "[&>span]:w-7 [&>span]:bg-brand-accent"
-                    : "[&>span]:w-2 [&>span]:bg-white/20 hover:[&>span]:bg-white/50"
+          {/* Navigation dots/counter */}
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              {CASE_STUDIES.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => scrollTo(i)}
+                  aria-label={`Go to slide ${i + 1}`}
+                  className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                    i === active ? "w-6 bg-white" : "w-1.5 bg-white/20 hover:bg-white/50"
                   }`}
-              >
-                <span className="block h-0.5 transition-all duration-300" />
-              </button>
-            ))}
-            <span className="font-syne text-[9px] tracking-widest uppercase text-white/20 ml-1 sm:ml-2">
-              {active + 1} / {CASE_STUDIES.length}
+                />
+              ))}
+            </div>
+            <span className="font-sans text-[9px] uppercase tracking-[0.2em] text-white/30 hidden sm:inline">
+              0{active + 1} / 0{CASE_STUDIES.length}
             </span>
-          </FadeReveal>
+          </div>
         </div>
 
-        <SectionLabel className="font-syne text-[8px] tracking-[0.35em] uppercase text-white/20 mb-3 md:hidden">
-          Swipe to explore →
-        </SectionLabel>
-
+        {/* Horizontal Scroll Track */}
         <div
           ref={scrollRef}
-          className="flex overflow-x-auto snap-x snap-mandatory no-scrollbar gap-6 px-6 scroll-pl-6 scroll-smooth pb-6"
+          className="flex overflow-x-auto snap-x snap-mandatory no-scrollbar gap-6 px-6 sm:px-12 scroll-smooth pb-6"
           onScroll={(e) => {
             const el = e.currentTarget;
             const card = el.children[0] as HTMLElement | undefined;
             if (!card) return;
-            const index = Math.round(el.scrollLeft / (card.offsetWidth + 12));
+            const index = Math.round(el.scrollLeft / (card.offsetWidth + 24));
             setActive(Math.min(Math.max(index, 0), CASE_STUDIES.length - 1));
           }}
         >
-          {CASE_STUDIES.map(({ title, quote, body, stat, statLabel, icon, tags, src, alt }) => (
+          {CASE_STUDIES.map(({ title, quote, body, stat, tags, src, alt }) => (
             <div
               key={title}
-              className="snap-center shrink-0 w-[88%] sm:w-[72%] md:w-[55%] lg:w-[420px] "
+              className="snap-start shrink-0 w-[85vw] sm:w-[60vw] md:w-[45vw] lg:w-[32rem] bg-black border border-white/10 flex flex-col justify-between overflow-hidden group"
             >
-              <div className="flex h-full flex-col bg-[#050505] border border-white/5 overflow-hidden group">
-                <div className="relative overflow-hidden h-70 sm:h-64 md:h-68">
-                  <img
-                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                    alt={alt}
-                    src={src}
-                  />
-                  <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 bg-brand-accent text-black px-3 py-1.5 sm:px-3.5 sm:py-2">
-                    <div className="font-syne text-sm sm:text-base font-extrabold">{stat}</div>
-                    <div className="font-syne text-[8px] tracking-widest uppercase font-bold">
-                      {statLabel}
-                    </div>
-                  </div>
+              {/* Card Image */}
+              <div className="relative h-[240px] sm:h-[280px] w-full overflow-hidden bg-black">
+                <img
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  alt={alt}
+                  src={src}
+                />
+                <div className="absolute top-4 right-4 bg-black/80 backdrop-blur-md px-3 py-1 border border-white/10 z-10">
+                  <p className="font-sans text-[9px] uppercase tracking-[0.2em] text-white/70">
+                    {stat}
+                  </p>
+                </div>
+              </div>
+
+              {/* Card Content */}
+              <div className="p-6 sm:p-8 flex flex-col justify-between flex-1 space-y-6">
+                <div className="space-y-4">
+                  <h3 className="font-sans text-[18px] sm:text-[20px] font-extralight text-white uppercase tracking-tight">
+                    {title}
+                  </h3>
+
+                  <blockquote className="font-serif italic text-[14px] text-white/80 border-l border-white/20 pl-3 py-0.5">
+                    &ldquo;{quote}&rdquo;
+                  </blockquote>
+
+                  <p className="font-sans text-[12px] text-white/40 leading-relaxed font-light line-clamp-3">
+                    {body}
+                  </p>
                 </div>
 
-                <div className="flex flex-col justify-between p-4 sm:p-5 md:p-6 space-y-3 sm:space-y-4">
-                  <div className="space-y-3 sm:space-y-4">
-                    <FadeReveal delay={0.05}>
-                      <div className="flex items-center gap-2.5">
-                        <span className="material-symbols-outlined text-brand-accent text-sm">
-                          {icon}
-                        </span>
-                        <span className="font-syne text-[9px] tracking-widest uppercase text-white/30 font-semibold">
-                          Field Journal
-                        </span>
-                      </div>
-                    </FadeReveal>
-
-                    <WordRevealHeading
-                      className="font-syne text-lg sm:text-xl md:text-2xl font-bold text-white"
-                      start="top 92%"
-                    >
-                      {title}
-                    </WordRevealHeading>
-
-                    <blockquote className="border-l-2 border-brand-accent/50 pl-3">
-                      <ClipRevealText
-                        as="p"
-                        className="text-xs sm:text-sm text-white/60 italic leading-relaxed"
-                        start="top 92%"
-                      >
-                        &ldquo;{quote}&rdquo;
-                      </ClipRevealText>
-                    </blockquote>
-
-                    <WordRevealText
-                      className="text-xs sm:text-sm text-white/45 leading-relaxed"
-                      start="top 92%"
-                      delay={0.12}
-                    >
-                      {body}
-                    </WordRevealText>
-                  </div>
-
-                  <div className="space-y-3">
-                    <FadeReveal delay={0.2} className="flex flex-wrap gap-2">
-                      {tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="font-syne text-[8px] tracking-widest uppercase text-white/30 border border-white/10 px-2.5 py-1"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </FadeReveal>
-                    <FadeReveal delay={0.28}>
-                      <a
-                        href="/portfolio"
-                        className="inline-flex items-center gap-2 font-syne text-[9px] tracking-widest uppercase text-white/40 hover:text-brand-accent transition-colors duration-300 border-b border-white/10 hover:border-brand-accent pb-1.5"
-                      >
-                        Read Full Story
-                        <span className="material-symbols-outlined text-xs">arrow_forward</span>
-                      </a>
-                    </FadeReveal>
-                  </div>
+                {/* Card Tags */}
+                <div className="pt-4 border-t border-white/5 flex items-center flex-wrap gap-2">
+                  {tags.map((tag, idx) => (
+                    <span key={tag} className="flex items-center gap-2 font-sans text-[9px] uppercase tracking-[0.2em] text-white/40">
+                      {tag}
+                      {idx < tags.length - 1 && <span className="opacity-30">·</span>}
+                    </span>
+                  ))}
                 </div>
               </div>
             </div>
