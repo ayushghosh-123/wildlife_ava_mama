@@ -4,6 +4,8 @@ import AboutSection from "@/component/AboutSection";
 import Collections from "@/component/Collection"
 import BehindTheShot from "@/component/BehindTheShot";
 import Newsletter from "@/component/Newsletter";
+import WebinarSection from "@/component/WebinarSection";
+import React from "react";
 
 
 export default function Home() {
@@ -14,6 +16,7 @@ export default function Home() {
         <AboutSection />
         <Collections /> 
         <BehindTheShot />
+         <WebinarSection />
         <Newsletter />
       </main>
  

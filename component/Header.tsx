@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { label: "About", href: "/aboutsection" },
   { label: "Collections", href: "/collections" },
   { label: "Ethics", href: "/ethics" },
+  { label: "webiner", href: "/webinar" },
   { label: "Inquire", href: "/inquire" },
 ];
 
@@ -17,13 +18,13 @@ const SOCIAL_LINKS = [
   {
     href: "https://instagram.com",
     label: "Instagram",
-    icon:<FaInstagram className="w-5 h-5 text-white/80 group-hover:text-white transition-colors"/>
+    icon: <FaInstagram className="w-5 h-5 text-white/80 group-hover:text-white transition-colors" />
   },
   // add pinerest and logo here only
   {
     href: "",
     label: "Pinterest",
-    icon : <FaPinterest className="w-5 h-5 text-white/80 group-hover:text-white transition-colors"/>
+    icon: <FaPinterest className="w-5 h-5 text-white/80 group-hover:text-white transition-colors" />
   }
 ];
 

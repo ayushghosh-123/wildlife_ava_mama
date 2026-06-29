@@ -15,8 +15,8 @@ export default function Footer() {
   const handleLogoClick = (e: React.MouseEvent) => {
     if (e.altKey) {
       e.preventDefault();
-      // routing on admin file also
-      router.push("/collections?admin=true");
+      // Route to admin portal with both collection and webinar options
+      router.push("/admin");
     }
   };
   return (
