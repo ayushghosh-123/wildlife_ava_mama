@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect , Suspense} from "react";
 import Link from "next/link";
 import axios from "axios";
 import { useSearchParams } from "next/navigation";
@@ -15,7 +15,7 @@ interface WorkItem {
   location: string;
 }
 
-export default function CollectionsPage() {
+function CollectionsInner() {
   const [works, setWorks] = useState<WorkItem[]>([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
@@ -392,5 +392,13 @@ export default function CollectionsPage() {
 
       </main>
     </div>
+  );
+}
+
+export default function CollectionsPage() {
+  return (
+    <Suspense fallback={null}>
+      <CollectionsInner />
+    </Suspense>
   );
 }
