@@ -2,12 +2,12 @@
 
 import React, { useEffect, useState } from "react";
 import {
-  FaWhatsapp,
   FaShieldAlt,
   FaImages,
   FaCalendarAlt,
   FaClock,
   FaUser,
+  FaExternalLinkAlt,
 } from "react-icons/fa";
 
 interface CollectionData {
@@ -25,7 +25,8 @@ interface WebinarItem {
   time: string;
   speaker: string;
   image?: string;
-  whatsappNumber: string;
+  googleFormUrl?: string;
+  whatsappNumber?: string;
   hasCollectionToggle: boolean;
   collectionId?: CollectionData;
   showEthics: boolean;
@@ -46,14 +47,6 @@ export default function WebinarSection() {
       .finally(() => setLoading(false));
   }, []);
 
-  const getWhatsappLink = (phone: string, title: string, dateStr: string) => {
-    const cleanPhone = phone.replace(/[^\d+]/g, "");
-    const message = `Hello! I want to join/inquire about the live webinar: "${title}" scheduled for ${new Date(
-      dateStr
-    ).toLocaleDateString()}.`;
-    return `https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`;
-  };
-
   return (
     <section className="bg-black w-full py-16 sm:py-24 border-t border-white/10 text-white">
       <div className="max-w-7xl mx-auto px-6 sm:px-12">
@@ -68,7 +61,7 @@ export default function WebinarSection() {
             </h2>
           </div>
           <p className="text-xs text-white/40 max-w-md">
-            Join live date-wise interactive masterclasses with ethical wildlife practice standards and direct WhatsApp registration.
+            Join live date-wise interactive masterclasses with ethical wildlife practice standards and direct Google Form registration.
           </p>
         </div>
 
@@ -92,6 +85,8 @@ export default function WebinarSection() {
                   year: "numeric",
                 }
               );
+
+              const formUrl = webinar.googleFormUrl || "#";
 
               return (
                 <div
@@ -164,20 +159,16 @@ export default function WebinarSection() {
                       </div>
                     )}
 
-                    {/* Common WhatsApp Connect Button */}
+                    {/* Google Form Registration Button */}
                     <div className="pt-2">
                       <a
-                        href={getWhatsappLink(
-                          webinar.whatsappNumber,
-                          webinar.title,
-                          webinar.date
-                        )}
+                        href={formUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-full flex items-center justify-center gap-2.5 bg-emerald-600 hover:bg-emerald-500 text-white py-3 px-4 rounded-xl font-medium text-xs uppercase tracking-widest transition-all duration-300 shadow-lg hover:shadow-emerald-600/30 cursor-pointer"
+                        className="w-full flex items-center justify-center gap-2.5 bg-white hover:bg-neutral-200 text-black py-3 px-4 rounded-xl font-semibold text-xs uppercase tracking-widest transition-all duration-300 shadow-lg cursor-pointer"
                       >
-                        <FaWhatsapp className="text-lg" />
-                        <span>Connect on WhatsApp</span>
+                        <span>Register via Google Form</span>
+                        <FaExternalLinkAlt className="text-xs text-black/70" />
                       </a>
                     </div>
                   </div>

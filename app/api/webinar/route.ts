@@ -33,7 +33,7 @@ export async function POST(req: Request) {
       time: body.time,
       speaker: body.speaker,
       image: body.image || "",
-      whatsappNumber: body.whatsappNumber,
+      googleFormUrl: body.googleFormUrl || "",
       hasCollectionToggle: Boolean(body.hasCollectionToggle),
       collectionId: body.hasCollectionToggle ? body.collectionId : null,
       showEthics: Boolean(body.showEthics),

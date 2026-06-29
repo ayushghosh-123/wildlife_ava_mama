@@ -8,7 +8,8 @@ export interface IWebinar {
   time: string;
   speaker: string;
   image?: string;
-  whatsappNumber: string;
+  googleFormUrl: string;
+  whatsappNumber?: string;
   hasCollectionToggle: boolean;
   collectionId?: mongoose.Types.ObjectId | string;
   showEthics: boolean;
@@ -24,7 +25,8 @@ const WebinarSchema = new Schema<IWebinar>(
     time: { type: String, required: true },
     speaker: { type: String, required: true },
     image: { type: String, default: "" },
-    whatsappNumber: { type: String, required: true },
+    googleFormUrl: { type: String, default: "" },
+    whatsappNumber: { type: String, default: "" },
     hasCollectionToggle: { type: Boolean, default: false },
     collectionId: { type: Schema.Types.ObjectId, ref: "Collection" },
     showEthics: { type: Boolean, default: true },

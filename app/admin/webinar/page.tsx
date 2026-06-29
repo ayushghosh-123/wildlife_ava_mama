@@ -23,7 +23,7 @@ export default function AdminWebinarPage() {
     time: "",
     speaker: "",
     image: "",
-    whatsappNumber: "+919531769585",
+    googleFormUrl: "",
     hasCollectionToggle: false,
     collectionId: "",
     showEthics: true,
@@ -93,7 +93,7 @@ export default function AdminWebinarPage() {
           time: "",
           speaker: "",
           image: "",
-          whatsappNumber: "+919531769585",
+          googleFormUrl: "",
           hasCollectionToggle: false,
           collectionId: "",
           showEthics: true,
@@ -185,17 +185,17 @@ export default function AdminWebinarPage() {
           </div>
           <div>
             <label className="block text-xs uppercase tracking-widest text-white/70 mb-2">
-              WhatsApp Contact Number
+              Attach Google Form Link (Registration URL)
             </label>
             <input
-              type="text"
+              type="url"
               required
-              value={formData.whatsappNumber}
+              value={formData.googleFormUrl}
               onChange={(e) =>
-                setFormData({ ...formData, whatsappNumber: e.target.value })
+                setFormData({ ...formData, googleFormUrl: e.target.value })
               }
               className="w-full bg-black/60 border border-white/20 rounded px-4 py-2 text-white focus:outline-none focus:border-white"
-              placeholder="e.g. +919876543210"
+              placeholder="https://forms.google.com/..."
             />
           </div>
         </div>

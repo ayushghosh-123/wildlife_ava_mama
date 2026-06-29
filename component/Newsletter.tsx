@@ -1,6 +1,6 @@
 "use client";
 
-import { FaEnvelope, FaWhatsapp, FaArrowRight, FaInstagram, FaPinterest } from "react-icons/fa6";
+import { FaEnvelope, FaArrowRight, FaInstagram, FaPinterest } from "react-icons/fa6";
 
 const CONTACT_LINKS = [
   {
@@ -17,12 +17,7 @@ const CONTACT_LINKS = [
     label: "pinterest",
     href: "https://in.pinterest.com/anuvabde/",
     icon: <FaPinterest className="w-5 h-5 text-white/80 group-hover:text-white transition-colors" />,
-  },
-  {
-    label: "WhatsApp",
-    href: "https://wa.me/919531769585",
-    icon: <FaWhatsapp className="w-5 h-5 text-white/80 group-hover:text-white transition-colors" />,
-  },
+  }
 ];
 
 export default function Newsletter() {
