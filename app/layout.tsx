@@ -4,6 +4,8 @@ import { Syne, Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
 import Footer from "@/component/Footer";
 import Header from "@/component/Header";
+import { CursorBubble } from "@/component/CursorBubble";
+import { RainLayer } from "@/component/RainLayer";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -38,10 +40,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-scroll-behavior="smooth">
-      <body className="min-h-full bg-[#050505] text-[#e5e2e1] font-sans flex flex-col safe-bottom" suppressHydrationWarning>
-        <Header />
-        {children}
-        <Footer />
+      <body className="relative min-h-full bg-[#000000] text-[#e5e2e1] font-sans flex flex-col safe-bottom" suppressHydrationWarning>
+        <CursorBubble />
+        <RainLayer />
+        <div className="relative z-10 flex min-h-screen flex-col">
+          <Header />
+          {children}
+          <Footer />
+        </div>
       </body>
     </html>
   );

@@ -1,6 +1,11 @@
 "use client";
 
-import { FadeReveal } from "@/component/ui/TextAnimations";
+import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const STORIES = [
   {
@@ -26,56 +31,90 @@ const STORIES = [
 ];
 
 function StoryCard({ story, index }: { story: (typeof STORIES)[0]; index: number }) {
+  const panelRef = useRef<HTMLElement | null>(null);
+  const imageRef = useRef<HTMLDivElement | null>(null);
+  const contentRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const ctx = gsap.context(() => {
+      if (!panelRef.current || !imageRef.current || !contentRef.current) return;
+
+      gsap.to(imageRef.current, {
+        yPercent: -16,
+        scale: 1.08,
+        ease: "none",
+        scrollTrigger: {
+          trigger: panelRef.current,
+          start: "top 90%",
+          end: "bottom 15%",
+          scrub: 1,
+        },
+      });
+
+      gsap.to(contentRef.current, {
+        yPercent: 8,
+        opacity: 0.9,
+        ease: "none",
+        scrollTrigger: {
+          trigger: panelRef.current,
+          start: "top 85%",
+          end: "bottom 20%",
+          scrub: 1,
+        },
+      });
+    }, panelRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <FadeReveal
-      as="article"
-      className="grid grid-cols-1 md:grid-cols-2 w-full border-t border-white/10 bg-black overflow-hidden"
-      delay={index * 0.1}
-      y={32}
+    <motion.article
+      initial={{ opacity: 0, y: 36 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.75, ease: "easeOut" }}
+      ref={panelRef}
+      className="group relative isolate mx-auto w-full max-w-7xl overflow-hidden rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_top_left,_rgba(216,163,92,0.18),_transparent_35%)] shadow-[0_30px_80px_rgba(0,0,0,0.28)]"
     >
-      {/* Left: Full-bleed image, no border-radius */}
-      <div className="relative w-full h-full min-h-[400px] md:min-h-[550px] overflow-hidden">
-        <img
-          className="w-full h-full object-cover rounded-none transition-transform duration-1000 hover:scale-[1.03]"
-          alt={story.imageAlt}
-          src={story.imageSrc}
-        />
-      </div>
-
-      {/* Right: Pure black panel with stacked metadata */}
-      <div className="bg-black p-8 sm:p-12 md:p-16 flex flex-col justify-between h-full min-h-[400px] md:min-h-[550px]">
-        <div className="space-y-6">
-          {/* Location in 9px caps */}
-          <p className="font-sans text-[9px] uppercase tracking-[0.2em] text-white/50">
-            {story.location}
-          </p>
-
-          {/* Title in 48px ultra-light sans */}
-          <h2 className="font-sans text-[36px] sm:text-[44px] md:text-[48px] font-extralight leading-[1.05] text-white uppercase tracking-tight">
-            {story.title}
-          </h2>
-
-          {/* Body copy in 13px 40% white */}
-          <p className="font-sans text-[13px] text-white/40 leading-relaxed font-light max-w-xl">
-            {story.description}
-          </p>
+      <div className="relative min-h-[26rem] overflow-hidden sm:min-h-[34rem] lg:min-h-[42rem]">
+        <div ref={imageRef} className="absolute inset-0">
+          <img
+            className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]"
+            alt={story.imageAlt}
+            src={story.imageSrc}
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,_rgba(6,6,6,0.82)_0%,_rgba(6,6,6,0.3)_45%,_rgba(6,6,6,0.55)_100%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,_rgba(255,255,255,0.18),_transparent_30%)]" />
         </div>
 
-        {/* Print count in 9px caps bottom-anchored */}
-        <div className="pt-8 mt-auto">
-          <p className="font-sans text-[9px] uppercase tracking-[0.2em] text-white/50">
-            {story.edition}
-          </p>
+        <div ref={contentRef} className="relative z-10 flex h-full items-end justify-start p-6 sm:p-10 lg:p-14">
+          <div className="max-w-xl rounded-[1.5rem] border border-white/10 bg-black/35 p-6 backdrop-blur-2xl sm:p-8 lg:p-10">
+            <p className="mb-4 text-[10px] uppercase tracking-[0.35em] text-white/60">
+              {story.location}
+            </p>
+            <h2 className="text-3xl font-light uppercase tracking-[0.16em] text-white sm:text-4xl lg:text-5xl">
+              {story.title}
+            </h2>
+            <p className="mt-4 max-w-lg text-sm leading-7 text-white/70 sm:text-base">
+              {story.description}
+            </p>
+            <div className="mt-8 flex items-center justify-between border-t border-white/10 pt-4 text-[10px] uppercase tracking-[0.3em] text-white/60">
+              <span>{story.edition}</span>
+              <span>0{index + 1}</span>
+            </div>
+          </div>
         </div>
       </div>
-    </FadeReveal>
+    </motion.article>
   );
 }
 
 export default function FeaturedStories() {
   return (
-    <section className="bg-black py-16 sm:py-24" id="stories">
-      <div className="w-full space-y-16 sm:space-y-24">
+    <section className="relative overflow-hidden px-4 py-16 sm:px-6 sm:py-24 lg:px-8" id="stories">
+      <div className="mx-auto flex max-w-7xl flex-col gap-8 sm:gap-10 lg:gap-12">
         {STORIES.map((story, i) => (
           <StoryCard key={story.id} story={story} index={i} />
         ))}

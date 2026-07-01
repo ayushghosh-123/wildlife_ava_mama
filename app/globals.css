@@ -5,30 +5,30 @@
   --font-sans: var(--font-hanken-grotesk), sans-serif;
   --font-syne: var(--font-syne), sans-serif;
 
-  /* Obsidian Nature Color Palette */
-  --color-background: #050505;
-  --color-surface: #141313;
-  --color-surface-dim: #141313;
-  --color-surface-bright: #3a3939;
-  --color-surface-container-lowest: #0e0e0e;
-  --color-surface-container-low: #1c1b1b;
-  --color-surface-container: #201f1f;
-  --color-surface-container-high: #2b2a2a;
-  --color-surface-container-highest: #353434;
+  /* Premium warm-night palette */
+  --color-background: #060606;
+  --color-surface: #12100f;
+  --color-surface-dim: #11100f;
+  --color-surface-bright: #2e2925;
+  --color-surface-container-lowest: #090808;
+  --color-surface-container-low: #171412;
+  --color-surface-container: #1d1916;
+  --color-surface-container-high: #26211d;
+  --color-surface-container-highest: #312b25;
 
-  --color-on-surface: #e5e2e1;
-  --color-on-surface-variant: #c4c7c7;
+  --color-on-surface: #f4efe9;
+  --color-on-surface-variant: #c8b7a3;
 
-  --color-primary: #c9c6c5;
-  --color-on-primary: #313030;
+  --color-primary: #f0e3d2;
+  --color-on-primary: #17120e;
 
-  --color-brand-accent: #e29933; /* Golden Orange */
-  --color-brand-forest: #2d4b37; /* Forest Green */
+  --color-brand-accent: #d8a35c;
+  --color-brand-forest: #29463b;
 
-  /* Rigid corners as per shapes spec */
-  --radius-DEFAULT: 0px;
-  --radius-lg: 0px;
-  --radius-xl: 0px;
+  /* Softer, modern cornering */
+  --radius-DEFAULT: 1rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.75rem;
   --radius-full: 9999px;
 
   /* Custom Spacing Constants */
@@ -40,11 +40,26 @@
 
 html {
   scroll-behavior: smooth;
+  color-scheme: dark;
 }
 
 body {
   overflow-x: hidden;
-  background-color: var(--color-background);
+  background-color: #000000;
+  color: var(--color-on-surface);
+  scroll-behavior: smooth;
+}
+
+html, body {
+  overscroll-behavior: none;
+}
+
+html.has-scroll-smooth {
+  overflow: hidden;
+}
+
+body.has-scroll-smooth {
+  overflow: hidden;
 }
 
 img {
@@ -53,8 +68,8 @@ img {
 }
 
 ::selection {
-  background: rgba(226, 153, 51, 0.35);
-  color: #fff;
+  background: rgba(216, 163, 92, 0.42);
+  color: #fff7ed;
 }
 
 /* Custom premium components and utilities */
@@ -200,6 +215,20 @@ img {
 @keyframes light-sweep {
   0%, 100% { background-position: 120% 0; }
   50% { background-position: -20% 0; }
+}
+
+@keyframes rain-fall {
+  0% {
+    transform: translate3d(0, -12vh, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate3d(0, 110vh, 0) rotate(8deg);
+    opacity: 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
