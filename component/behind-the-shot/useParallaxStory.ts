@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import LocomotiveScroll from "locomotive-scroll";
 import { useReducedMotion } from "framer-motion";
 import type { StoryCardData } from "./data";
 
@@ -29,14 +28,8 @@ export function useParallaxStory(cards: StoryCardData[]) {
       const isReduced = prefersReducedMotion;
 
       if (!isReduced) {
-        const locomotive = new LocomotiveScroll({
-          lenisOptions: {
-            duration: 1.2,
-            easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-          },
-        });
-
         const mm = gsap.matchMedia();
+
         mm.add("(min-width: 1024px)", () => {
           const distance = Math.max(0, track.scrollWidth - section.clientWidth + 96);
 
@@ -61,39 +54,54 @@ export function useParallaxStory(cards: StoryCardData[]) {
           });
         });
 
-        cardRefs.current.forEach((card, index) => {
-          if (!card) return;
+        mm.add("(max-width: 1023px)", () => {
+          cardRefs.current.forEach((card, index) => {
+            if (!card) return;
 
-          const direction = index % 2 === 0 ? -120 : 120;
+            const cardEl = card.querySelector("article") as HTMLElement | null;
+            const mediaEl = card.querySelector("img") as HTMLElement | null;
 
-          gsap.fromTo(
-            card,
-            {
-              opacity: 0,
-              x: direction,
-              scale: 0.96,
-              filter: "blur(14px)",
-            },
-            {
-              opacity: 1,
-              x: 0,
-              scale: 1,
-              filter: "blur(0px)",
-              ease: "power3.out",
-              duration: 1.1,
-              scrollTrigger: {
-                trigger: card,
-                start: "top 90%",
-                end: "top 40%",
-                scrub: 0.8,
-              },
+            if (cardEl) {
+              gsap.fromTo(
+                cardEl,
+                {
+                  opacity: 0,
+                  y: 70,
+                  scale: 0.96,
+                  rotate: -1.2,
+                },
+                {
+                  opacity: 1,
+                  y: 0,
+                  scale: 1,
+                  rotate: 0,
+                  ease: "power3.out",
+                  duration: 1,
+                  delay: index * 0.08,
+                  scrollTrigger: {
+                    trigger: cardEl,
+                    start: "top 88%",
+                    end: "top 45%",
+                    toggleActions: "play none none reverse",
+                  },
+                }
+              );
             }
-          );
-        });
 
-        return () => {
-          locomotive.destroy();
-        };
+            if (mediaEl) {
+              gsap.to(mediaEl, {
+                yPercent: -6,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: card,
+                  start: "top bottom",
+                  end: "bottom top",
+                  scrub: 1.2,
+                },
+              });
+            }
+          });
+        });
       }
     }, sectionRef);
 

@@ -50,7 +50,7 @@ export default function BehindTheShot() {
 
         <div
           ref={trackRef}
-          className={`flex ${prefersReducedMotion ? "flex-col gap-6 lg:grid lg:grid-cols-2 xl:grid-cols-2" : "w-max items-stretch gap-5 sm:gap-6"}`}
+          className={`flex ${prefersReducedMotion ? "flex-col gap-6 lg:grid lg:grid-cols-2 xl:grid-cols-2" : "flex-col gap-5 sm:gap-6 lg:w-max lg:items-stretch lg:flex-row lg:gap-5 xl:gap-6"}`}
         >
           {CASE_STUDIES.map((card, index) => (
             <div
